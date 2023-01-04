@@ -5,31 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="First commit.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/createdb1_sql.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafe-student-project.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/items/CoffeeDrink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/items/Food.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/items/Item.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/items/OtherDrink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/items/TeaDrink.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/users/Admin.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/users/Barista.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/users/Client.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/users/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utility/Database.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/cafe.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/graphics/outline_home_black_24dp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/graphics/user.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/management/AdminBoard.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/management/AdminBoardController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/management/Login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/management/ManagementSys.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utility/DataPasser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafe-student-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cafe-student-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,12 +28,32 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaFXApplication" />
+        <option value="CSS File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="cdd71166-9744-4aeb-949c-2adcd5eefeed" />
+        <option name="url" value="https://github.com/ds-an/cafe-student-project.git" />
+      </UrlAndAccount>
+    </option>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -57,35 +66,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/vasily",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Global Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propGUI",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/vasily/IdeaProjects/cafe-student-project/src/graphics&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.JavaFX&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql",
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;,
+      &quot;sqlite&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "0e2b1e8d-c377-4116-a885-0320e3412b42"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;0e2b1e8d-c377-4116-a885-0320e3412b42&quot;
     ]
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/graphics" />
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/management" />
+      <recent name="$PROJECT_DIR$/src/graphics" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.cafe">
+    <list>
+      <item itemvalue="Application.cafe" />
+      <item itemvalue="Database Script.createdb1.sql" />
+    </list>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -100,17 +126,97 @@
       <workItem from="1671885299624" duration="16070000" />
       <workItem from="1671957976002" duration="18349000" />
       <workItem from="1671991755310" duration="12682000" />
-      <workItem from="1672045025312" duration="19286000" />
+      <workItem from="1672045025312" duration="22675000" />
+      <workItem from="1672301246669" duration="6053000" />
+      <workItem from="1672316109579" duration="2750000" />
+      <workItem from="1672327988480" duration="646000" />
+      <workItem from="1672329457693" duration="213000" />
+      <workItem from="1672425884434" duration="1024000" />
+      <workItem from="1672655877228" duration="13000" />
+      <workItem from="1672662076897" duration="8340000" />
+      <workItem from="1672679645522" duration="9910000" />
+      <workItem from="1672768792052" duration="7519000" />
+      <workItem from="1672825089022" duration="3417000" />
+      <workItem from="1672842406812" duration="2085000" />
+      <workItem from="1672848187839" duration="2293000" />
     </task>
+    <task id="LOCAL-00001" summary="First commit.">
+      <created>1672069472963</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1672069472963</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="javafx" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First commit." />
     <option name="LAST_COMMIT_MESSAGE" value="First commit." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/utility/DataPasser.java</url>
+          <line>5</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/utility/DataPasser.java</url>
+          <line>8</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>17</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/LoginController.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/LoginController.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/utility/DataPasser.java</url>
+          <line>3</line>
+          <properties field="username" class="utility.DataPasser" />
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

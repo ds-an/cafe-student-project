@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="management.AdminBoardController">
+   <children>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="textfield">
+         <children>
+            <TabPane layoutX="372.0" layoutY="40.0" prefHeight="759.0" prefWidth="828.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Untitled Tab 1">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+                <Tab text="Untitled Tab 2">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+            <Separator layoutX="358.0" layoutY="40.0" orientation="VERTICAL" prefHeight="759.0" prefWidth="32.0" />
+            <AnchorPane layoutY="-1.0" prefHeight="40.0" prefWidth="1200.0">
+               <children>
+                  <Text fx:id="welcomeText" layoutX="22.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="326.7294921875">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="currentDate" layoutX="924.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="261.7294921875">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <Separator layoutX="-2.0" layoutY="39.0" prefHeight="3.0" prefWidth="1200.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
