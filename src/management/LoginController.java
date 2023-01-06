@@ -43,6 +43,8 @@ public class LoginController {
     }
     @FXML
     public void changeSceneToUser(ActionEvent event) throws SQLException, IOException {
+        // Как обеспечить повторный ввод в форму логина/пароля? Сейчас можно залогиниться
+        // либо с первого раза, либо никак - после неудачной попытки залогиниться не удается.
         String username = usernameField.getText();
         String password = usernameField.getText();
         while (users.next()) {
@@ -56,13 +58,13 @@ public class LoginController {
                 adminBoardController.setNameLabel(username);
                 adminBoardController.setCurrentDate();
 //                root = FXMLLoader.load(getClass().getResource("AdminBoard.fxml"));
-                stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setScene(scene);
-                stage.show();
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                }
             }
         }
-    }
     public void changeSceneToClient(ActionEvent event) {
 
     }

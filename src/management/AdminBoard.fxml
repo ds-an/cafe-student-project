@@ -1,8 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
@@ -12,36 +22,354 @@
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="textfield">
          <children>
-            <TabPane layoutX="372.0" layoutY="40.0" prefHeight="759.0" prefWidth="828.0" tabClosingPolicy="UNAVAILABLE">
-              <tabs>
-                <Tab text="Untitled Tab 1">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-                <Tab text="Untitled Tab 2">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                  </content>
-                </Tab>
-              </tabs>
-            </TabPane>
-            <Separator layoutX="358.0" layoutY="40.0" orientation="VERTICAL" prefHeight="759.0" prefWidth="32.0" />
+            <Separator layoutX="236.0" layoutY="41.0" orientation="VERTICAL" prefHeight="759.0" prefWidth="32.0" />
             <AnchorPane layoutY="-1.0" prefHeight="40.0" prefWidth="1200.0">
                <children>
-                  <Text fx:id="welcomeText" layoutX="22.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="326.7294921875">
+                  <Label fx:id="welcomeText" layoutX="27.0" layoutY="12.0" prefHeight="20.0" prefWidth="281.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
-                  </Text>
-                  <Text fx:id="currentDate" layoutX="924.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="261.7294921875">
+                  </Label>
+                  <Label fx:id="currentDate" layoutX="903.0" layoutY="12.0" prefHeight="20.0" prefWidth="271.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
-                  </Text>
+                  </Label>
                </children>
             </AnchorPane>
             <Separator layoutX="-2.0" layoutY="39.0" prefHeight="3.0" prefWidth="1200.0" />
+            <AnchorPane layoutY="41.0" prefHeight="759.0" prefWidth="252.0">
+               <children>
+                  <Button fx:id="dashBoardButton" layoutX="51.0" layoutY="60.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Dashboard">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="itemsButton" layoutX="51.0" layoutY="152.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Items">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="employeesButton" layoutX="51.0" layoutY="245.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Employees">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="logOutButton" layoutX="51.0" layoutY="650.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Log Out">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+               </children></AnchorPane>
+            <AnchorPane layoutX="252.0" layoutY="39.0" prefHeight="759.0" prefWidth="946.0">
+               <children>
+                  <AnchorPane fx:id="dashBoardPane" prefHeight="759.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="40.0" layoutY="47.0" prefHeight="135.0" prefWidth="258.0">
+                           <children>
+                              <Text layoutX="115.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Text layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                        </AnchorPane>
+                        <Separator layoutX="8.0" layoutY="236.0" prefHeight="3.0" prefWidth="931.0" />
+                        <TabPane layoutX="24.0" layoutY="248.0" prefHeight="497.0" prefWidth="904.0" tabClosingPolicy="UNAVAILABLE">
+                          <tabs>
+                              <Tab fx:id="ordersTab" text="Orders">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="ordeersTable" layoutX="14.0" layoutY="14.0" prefHeight="443.0" prefWidth="879.0">
+                                            <columns>
+                                              <TableColumn fx:id="orderTableOrderId" prefWidth="76.0" text="OrderID" />
+                                              <TableColumn fx:id="orderTableClientId" prefWidth="73.0" text="ClientID" />
+                                                <TableColumn fx:id="orderTableBaristaId" prefWidth="74.0" text="BaristaID" />
+                                                <TableColumn fx:id="orderTableDrinkId" prefWidth="77.0" text="DrinkID" />
+                                                <TableColumn fx:id="orderTableFoodId" prefWidth="73.0" text="FoodID" />
+                                                <TableColumn fx:id="orderTableTimestamp" prefWidth="156.0" text="Timestamp" />
+                                                <TableColumn fx:id="orderTableTotal" minWidth="1.0" prefWidth="128.0" text="Total" />
+                                                <TableColumn fx:id="orderTablePaymentStatus" prefWidth="221.0" text="PaymentStatus" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                              <Tab fx:id="paymentsTab" text="Payments">
+                                 <content>
+                                    <AnchorPane fx:id="getReceipt" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="paymentsTable" layoutX="14.0" layoutY="14.0" prefHeight="440.0" prefWidth="614.0">
+                                            <columns>
+                                              <TableColumn fx:id="paymentTableId" prefWidth="94.0" text="PaymentID" />
+                                              <TableColumn fx:id="paymentTableOrderId" prefWidth="95.0" text="OrderID" />
+                                                <TableColumn fx:id="paymentTableType" prefWidth="122.0" text="PaymentType" />
+                                                <TableColumn fx:id="paymentTableTimestamp" prefWidth="302.0" text="Timestamp" />
+                                            </columns>
+                                          </TableView>
+                                          <Separator layoutX="640.0" layoutY="4.0" orientation="VERTICAL" prefHeight="460.0" prefWidth="6.0" />
+                                          <Label layoutX="701.0" layoutY="59.0" text="PaymentID:" />
+                                          <TextField fx:id="paymentID" layoutX="785.0" layoutY="55.0" prefHeight="24.0" prefWidth="56.0" />
+                                          <Button layoutX="712.0" layoutY="92.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Get Receipt">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                            <Tab fx:id="incomeChartTab" text="Income">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <LineChart layoutX="17.0" layoutY="14.0" prefHeight="439.0" prefWidth="870.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </LineChart>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab fx:id="numberOfOrdersTab" text="№ of Orders">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <BarChart layoutX="17.0" layoutY="14.0" prefHeight="439.0" prefWidth="870.0">
+                                            <xAxis>
+                                              <CategoryAxis side="BOTTOM" />
+                                            </xAxis>
+                                            <yAxis>
+                                              <NumberAxis side="LEFT" />
+                                            </yAxis>
+                                          </BarChart>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
+                        <AnchorPane layoutX="336.0" layoutY="47.0" prefHeight="135.0" prefWidth="258.0">
+                           <children>
+                              <Text layoutX="115.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Text layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="644.0" layoutY="47.0" prefHeight="135.0" prefWidth="258.0">
+                           <children>
+                              <Text layoutX="115.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Text layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="itemsPane" prefHeight="759.0" prefWidth="824.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="6.0" layoutY="14.0" prefHeight="730.0" prefWidth="271.0">
+                           <children>
+                              <Label layoutX="31.0" layoutY="40.0" text="ItemType:" />
+                              <Button fx:id="addItemButton" layoutX="21.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Add">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Button>
+                              <ComboBox fx:id="itemType" layoutX="114.0" layoutY="36.0" prefHeight="24.0" prefWidth="137.0" />
+                              <Button fx:id="updateItemButton" layoutX="21.0" layoutY="559.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Update">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Button>
+                              <Button fx:id="clearItemsButton" layoutX="155.0" layoutY="559.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Clear">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Button>
+                              <Button fx:id="removeItemButton" layoutX="155.0" layoutY="492.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Remove">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Button>
+                              <AnchorPane layoutX="20.0" layoutY="70.0">
+                                 <children>
+                                    <AnchorPane>
+                                       <children>
+                                          <AnchorPane fx:id="paneChoiceCoffee" visible="false">
+                                             <children>
+                                                <TextField fx:id="coffeeName" layoutX="94.0380859375" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="21.0380859375" layoutY="4.0" text="Name:" />
+                                                <Label layoutX="0.0380859375" layoutY="110.0" text="Temperature:" />
+                                                <TextField fx:id="coffeePriceIns" layoutX="94.0380859375" layoutY="141.0" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="14.0380859375" layoutY="145.0" text="PriceIns:" />
+                                                <TextField fx:id="coffeePriceOut" layoutX="94.0380859375" layoutY="178.0" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="14.0380859375" layoutY="182.0" text="PriceOut:" />
+                                                <Label layoutX="11.0380859375" layoutY="76.0" text="MilkType:" />
+                                                <ComboBox fx:id="coffeeMilkType" layoutX="94.0380859375" layoutY="72.0" prefHeight="24.0" prefWidth="137.0" />
+                                                <ComboBox fx:id="coffeeType" layoutX="94.0380859375" layoutY="38.0" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="22.0" layoutY="42.0" text="CType:" />
+                                                <ComboBox fx:id="coffeeTemp" layoutX="94.0" layoutY="106.0" prefHeight="24.0" prefWidth="137.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane fx:id="paneChoiceTea" visible="false">
+                                             <children>
+                                                <TextField fx:id="teaName" layoutX="94.0380859375" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="21.0380859375" layoutY="4.0" text="Name:" />
+                                                <Label layoutX="0.0380859375" layoutY="110.0" text="Temperature:" />
+                                                <TextField fx:id="teaPriceIns" layoutX="94.0380859375" layoutY="141.0" prefHeight="24.0" prefWidth="137.0" promptText="0.0$" />
+                                                <Label layoutX="14.0380859375" layoutY="145.0" text="PriceIns:" />
+                                                <TextField fx:id="teaPriceOut" layoutX="94.0380859375" layoutY="178.0" prefHeight="24.0" prefWidth="137.0" promptText="0.0$" />
+                                                <Label layoutX="14.0380859375" layoutY="182.0" text="PriceOut:" />
+                                                <Label layoutX="11.0380859375" layoutY="76.0" text="MilkType:" />
+                                                <ComboBox fx:id="teaMilkType" layoutX="94.0380859375" layoutY="72.0" prefHeight="24.0" prefWidth="137.0" />
+                                                <ComboBox fx:id="teaType" layoutX="94.0380859375" layoutY="38.0" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="23.0" layoutY="42.0" text="TType:" />
+                                                <ComboBox fx:id="teaTemp" layoutX="94.0" layoutY="106.0" prefHeight="24.0" prefWidth="137.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane fx:id="paneChoiceDrinks" visible="false">
+                                             <children>
+                                                <TextField fx:id="drinkName" layoutX="94.0380859375" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="21.0380859375" layoutY="4.0" text="Name:" />
+                                                <Label layoutX="1.0" layoutY="34.0" text="Temperature:" />
+                                                <TextField fx:id="drinkPriceIns" layoutX="95.0" layoutY="65.0" prefHeight="24.0" prefWidth="137.0" promptText="0.0$" />
+                                                <Label layoutX="15.0" layoutY="69.0" text="PriceIns:" />
+                                                <TextField fx:id="drinkPriceOut" layoutX="95.0" layoutY="102.0" prefHeight="24.0" prefWidth="137.0" promptText="0.0$" />
+                                                <Label layoutX="15.0" layoutY="106.0" text="PriceOut:" />
+                                                <ComboBox fx:id="drinkTemp" layoutX="94.0" layoutY="30.0" prefHeight="24.0" prefWidth="137.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane fx:id="paneChoiceFood" visible="false">
+                                             <children>
+                                                <TextField fx:id="foodName" layoutX="94.0380859375" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="21.0380859375" layoutY="4.0" text="Name:" />
+                                                <TextField fx:id="foodPriceIns" layoutX="94.0" layoutY="71.0" prefHeight="24.0" prefWidth="137.0" promptText="0.0$" />
+                                                <Label layoutX="14.0" layoutY="75.0" text="PriceIns:" />
+                                                <TextField fx:id="foodPriceOut" layoutX="94.0" layoutY="108.0" prefHeight="24.0" prefWidth="137.0" promptText="0.0$" />
+                                                <Label layoutX="14.0" layoutY="112.0" text="PriceOut:" />
+                                                <ComboBox fx:id="foodType" layoutX="94.0380859375" layoutY="38.0" prefHeight="24.0" prefWidth="137.0" />
+                                                <Label layoutX="22.0" layoutY="42.0" text="FType:" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </AnchorPane>
+                        <Separator layoutX="285.0" layoutY="11.0" orientation="VERTICAL" prefHeight="738.0" prefWidth="6.0" />
+                        <AnchorPane layoutX="294.0" layoutY="14.0" prefHeight="738.0" prefWidth="645.0">
+                           <children>
+                              <TableView fx:id="foodTable" layoutY="542.0" prefHeight="174.0" prefWidth="645.0">
+                                 <columns>
+                                    <TableColumn fx:id="foodTableId" prefWidth="45.0" text="ID" />
+                                    <TableColumn fx:id="foodTableName" prefWidth="105.0" text="Name" />
+                                    <TableColumn fx:id="foodTableType" prefWidth="75.0" text="FType" />
+                                    <TableColumn fx:id="foodTablePriceIns" prefWidth="104.0" text="PriceIns" />
+                                    <TableColumn fx:id="foodTablePriceOut" prefWidth="123.0" text="PriceOut" />
+                                    <TableColumn fx:id="foodTableTotalLeft" minWidth="6.0" prefWidth="42.0" text="TLeft" />
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="drinksTable" layoutY="362.0" prefHeight="174.0" prefWidth="645.0">
+                                 <columns>
+                                    <TableColumn fx:id="drinkTableID" prefWidth="45.0" text="ID" />
+                                    <TableColumn fx:id="drinkTableName" prefWidth="105.0" text="Name" />
+                                    <TableColumn fx:id="drinkTablePriceIns" prefWidth="104.0" text="PriceIns" />
+                                    <TableColumn fx:id="drinkTablePriceOut" prefWidth="123.0" text="PriceOut" />
+                                    <TableColumn fx:id="drinkTableTotalLeft" minWidth="6.0" prefWidth="42.0" text="TLeft" />
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="teaTable" layoutY="181.0" prefHeight="174.0" prefWidth="645.0">
+                                 <columns>
+                                    <TableColumn fx:id="teaTableId" prefWidth="45.0" text="ID" />
+                                    <TableColumn fx:id="teaTableName" prefWidth="105.0" text="Name" />
+                                    <TableColumn fx:id="teaTableType" prefWidth="75.0" text="TType" />
+                                    <TableColumn fx:id="teaTableMilkType" prefWidth="75.0" text="MType" />
+                                    <TableColumn fx:id="teaTableTemp" prefWidth="46.0" text="T" />
+                                    <TableColumn fx:id="teaTablePriceIns" prefWidth="104.0" text="PriceIns" />
+                                    <TableColumn fx:id="teaTablePriceOut" prefWidth="123.0" text="PriceOut" />
+                                    <TableColumn fx:id="teaTotalLeft" minWidth="6.0" prefWidth="71.0" text="TLeft" />
+                                 </columns>
+                              </TableView>
+                              <TableView fx:id="coffeeTable" prefHeight="174.0" prefWidth="645.0">
+                                 <columns>
+                                    <TableColumn fx:id="coffeeTableId" prefWidth="45.0" text="ID" />
+                                    <TableColumn fx:id="coffeeTableName" prefWidth="105.0" text="Name" />
+                                    <TableColumn fx:id="coffeeTableType" prefWidth="75.0" text="CType" />
+                                    <TableColumn fx:id="coffeeTableMilkType" prefWidth="75.0" text="MType" />
+                                    <TableColumn fx:id="coffeeTableTemp" prefWidth="46.0" text="T" />
+                                    <TableColumn fx:id="coffeeTablePriceIns" prefWidth="104.0" text="PriceIns" />
+                                    <TableColumn fx:id="coffeeTablePriceOut" prefWidth="123.0" text="PriceOut" />
+                                    <TableColumn fx:id="coffeeTotalLeft" minWidth="6.0" prefWidth="71.0" text="TLeft" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="employeesPane" prefHeight="759.0" prefWidth="946.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane layoutX="2.0" layoutY="249.0" prefHeight="505.0" prefWidth="940.0">
+                           <children>
+                              <TableView fx:id="employeesTable" prefHeight="505.0" prefWidth="940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <columns>
+                                    <TableColumn fx:id="employeeTableId" prefWidth="37.0" text="ID" />
+                                    <TableColumn fx:id="employeeTableFirstName" prefWidth="141.0" text="FirstName" />
+                                    <TableColumn fx:id="employeeTableLastName" prefWidth="141.0" text="LastName" />
+                                    <TableColumn fx:id="employeeTableShift" minWidth="0.0" prefWidth="94.0" text="Shift" />
+                                    <TableColumn fx:id="employeeTableRank" prefWidth="106.0" text="Rank" />
+                                    <TableColumn fx:id="employeeTablePhoneNumber" prefWidth="195.0" text="PhoneNumber" />
+                                    <TableColumn fx:id="employeeTableEmail" prefWidth="225.0" text="Email" />
+                                 </columns>
+                              </TableView>
+                           </children>
+                        </AnchorPane>
+                        <Separator layoutX="12.0" layoutY="233.0" prefHeight="16.0" prefWidth="921.0" />
+                        <AnchorPane layoutX="3.0" layoutY="8.0" prefHeight="225.0" prefWidth="940.0">
+                           <children>
+                              <Button fx:id="hireEmployee" layoutX="25.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Hire">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="changeShiftEmployee" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="CShift">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="fireEmployee" layoutX="134.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Fire">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="promoteEmployee" layoutX="25.0" layoutY="86.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Promote">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="clearFieldsEmployee" layoutX="24.0" layoutY="159.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" text="Clear">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Separator layoutX="234.0" layoutY="3.0" orientation="VERTICAL" prefHeight="219.0" prefWidth="0.0" />
+                              <Label layoutX="507.0" layoutY="26.0" text="ID:" />
+                              <Label layoutX="576.0" layoutY="138.0" text="Email:" />
+                              <Label layoutX="576.0" layoutY="105.0" text="Phone Number:" />
+                              <Label layoutX="256.0" layoutY="138.0" text="Shift:" />
+                              <Label layoutX="576.0" layoutY="74.0" text="Rank:" />
+                              <Label layoutX="256.0" layoutY="74.0" text="First Name:" />
+                              <Label layoutX="256.0" layoutY="105.0" text="Last Name:" />
+                              <TextField fx:id="employeeId" layoutX="530.0" layoutY="22.0" prefHeight="24.0" prefWidth="46.0" />
+                              <TextField fx:id="employeePhoneNumber" layoutX="684.0" layoutY="100.0" prefHeight="24.0" prefWidth="150.0" />
+                              <TextField fx:id="employeeFirstName" layoutX="335.0" layoutY="70.0" prefHeight="24.0" prefWidth="150.0" />
+                              <TextField fx:id="employeeLastName" layoutX="335.0" layoutY="101.0" prefHeight="24.0" prefWidth="150.0" />
+                              <TextField fx:id="employeeEmail" layoutX="684.0" layoutY="133.0" prefHeight="24.0" prefWidth="150.0" />
+                              <ComboBox fx:id="employeeShift" layoutX="335.0" layoutY="134.0" prefWidth="150.0" />
+                              <ComboBox fx:id="employeeRank" layoutX="684.0" layoutY="69.0" prefWidth="150.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
          </children>
       </AnchorPane>
    </children>
