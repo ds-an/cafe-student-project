@@ -1415,74 +1415,74 @@
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="514" parent="484" name="ShiftManager">
-      <DasType>INTEGER|0s</DasType>
+    <column id="514" parent="484" name="PhoneNumber">
+      <DasType>NVARCHAR(24)|0s</DasType>
       <Position>6</Position>
     </column>
-    <column id="515" parent="484" name="PhoneNumber">
-      <DasType>NVARCHAR(24)|0s</DasType>
+    <column id="515" parent="484" name="Email">
+      <DasType>NVARCHAR(60)|0s</DasType>
       <Position>7</Position>
     </column>
-    <column id="516" parent="484" name="Email">
-      <DasType>NVARCHAR(60)|0s</DasType>
-      <Position>8</Position>
-    </column>
-    <key id="517" parent="484">
+    <key id="516" parent="484">
       <ColNames>BaristaId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="518" parent="485" name="ClientId">
+    <column id="517" parent="485" name="ClientId">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="519" parent="485" name="FirstName">
+    <column id="518" parent="485" name="FirstName">
       <DasType>NVARCHAR(40)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="520" parent="485" name="LastName">
+    <column id="519" parent="485" name="LastName">
       <DasType>NVARCHAR(40)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="521" parent="485" name="PhoneNumber">
+    <column id="520" parent="485" name="PhoneNumber">
       <DasType>NVARCHAR(24)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="522" parent="485" name="Email">
+    <column id="521" parent="485" name="Email">
       <DasType>NVARCHAR(60)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="523" parent="485" name="CoffeeOrders">
+    <column id="522" parent="485" name="CoffeeOrders">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <key id="524" parent="485">
+    <key id="523" parent="485">
       <ColNames>ClientId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="525" parent="486" name="ShopName">
+    <column id="524" parent="486" name="ShopName">
       <DasType>NVARCHAR(40)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="526" parent="486" name="Phonenumber">
+    <column id="525" parent="486" name="Phonenumber">
       <DasType>NVARCHAR(24)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="527" parent="486" name="AdminId">
+    <column id="526" parent="486" name="AdminId">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="528" parent="486" name="Email">
+    <column id="527" parent="486" name="Email">
       <DasType>NVARCHAR(60)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="529" parent="486" name="Address">
+    <column id="528" parent="486" name="Address">
       <DasType>NVARCHAR(100)|0s</DasType>
       <Position>5</Position>
     </column>
+    <check id="529" parent="487">
+      <Predicate>Temperature IN (&apos;Hot&apos;,
+                                                 &apos;Cold&apos;)</Predicate>
+    </check>
     <column id="530" parent="487" name="DrinkId">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
@@ -1522,197 +1522,215 @@
       <ColNames>DrinkId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="539" parent="488" name="DrinkId">
+    <check id="539" parent="488">
+      <Predicate>Temperature IN (&apos;Hot&apos;,
+                                  &apos;Cold&apos;)</Predicate>
+    </check>
+    <column id="540" parent="488" name="DrinkId">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="540" parent="488" name="DrinkName">
+    <column id="541" parent="488" name="DrinkName">
       <DasType>NVARCHAR(60)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="541" parent="488" name="Temperature">
+    <column id="542" parent="488" name="Temperature">
       <DasType>NVARCHAR(40)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="542" parent="488" name="PriceInside">
+    <column id="543" parent="488" name="PriceInside">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="543" parent="488" name="PriceOutside">
+    <column id="544" parent="488" name="PriceOutside">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="544" parent="488" name="TotalLeft">
+    <column id="545" parent="488" name="TotalLeft">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <key id="545" parent="488">
+    <key id="546" parent="488">
       <ColNames>DrinkId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="546" parent="489" name="DrinkId">
+    <check id="547" parent="489">
+      <Predicate>TeaType IN (&apos;Black&apos;,
+                                          &apos;Green&apos;,
+                                          &apos;Herbal&apos;)</Predicate>
+    </check>
+    <check id="548" parent="489">
+      <Predicate>Temperature IN (&apos;Hot&apos;,
+                                  &apos;Cold&apos;)</Predicate>
+    </check>
+    <column id="549" parent="489" name="DrinkId">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="547" parent="489" name="DrinkName">
+    <column id="550" parent="489" name="DrinkName">
       <DasType>NVARCHAR(60)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="548" parent="489" name="TeaType">
+    <column id="551" parent="489" name="TeaType">
       <DasType>NVARCHAR(60)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="549" parent="489" name="MilkType">
+    <column id="552" parent="489" name="MilkType">
       <DasType>NVARCHAR(40)|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="550" parent="489" name="Temperature">
+    <column id="553" parent="489" name="Temperature">
       <DasType>NVARCHAR(40)|0s</DasType>
       <Position>5</Position>
     </column>
-    <column id="551" parent="489" name="PriceInside">
+    <column id="554" parent="489" name="PriceInside">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="552" parent="489" name="PriceOutside">
+    <column id="555" parent="489" name="PriceOutside">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="553" parent="489" name="TotalLeft">
+    <column id="556" parent="489" name="TotalLeft">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <key id="554" parent="489">
+    <key id="557" parent="489">
       <ColNames>DrinkId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="555" parent="490" name="FoodId">
+    <check id="558" parent="490">
+      <Predicate>FoodType IN (&apos;Sandwich&apos;,
+                                      &apos;Salad&apos;,
+                                      &apos;Pastry&apos;)</Predicate>
+    </check>
+    <column id="559" parent="490" name="FoodId">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="556" parent="490" name="FoodName">
+    <column id="560" parent="490" name="FoodName">
       <DasType>NVARCHAR(60)|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="557" parent="490" name="FoodType">
-      <DasType>NVARCAHR(40)|0s</DasType>
+    <column id="561" parent="490" name="FoodType">
+      <DasType>NVARCHAR(40)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="558" parent="490" name="PriceInside">
+    <column id="562" parent="490" name="PriceInside">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="559" parent="490" name="PriceOutside">
+    <column id="563" parent="490" name="PriceOutside">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="560" parent="490" name="TotalLeft">
+    <column id="564" parent="490" name="TotalLeft">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <key id="561" parent="490">
+    <key id="565" parent="490">
       <ColNames>FoodId</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="562" parent="491">
+    <check id="566" parent="491">
       <Predicate>PaymentStatus IN (&apos;Payed&apos;, &apos;Unpayed&apos;)</Predicate>
     </check>
-    <column id="563" parent="491" name="OrderId">
+    <column id="567" parent="491" name="OrderId">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="564" parent="491" name="ClientId">
+    <column id="568" parent="491" name="ClientId">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="565" parent="491" name="BaristaId">
+    <column id="569" parent="491" name="BaristaId">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="566" parent="491" name="DrinkId">
+    <column id="570" parent="491" name="DrinkId">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="567" parent="491" name="FoodID">
+    <column id="571" parent="491" name="FoodID">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="568" parent="491" name="Timestamp">
+    <column id="572" parent="491" name="Timestamp">
       <DasType>DATETIME|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>6</Position>
     </column>
-    <column id="569" parent="491" name="Total">
+    <column id="573" parent="491" name="Total">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <column id="570" parent="491" name="PaymentStatus">
+    <column id="574" parent="491" name="PaymentStatus">
       <DasType>NVARCHAR(20)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>8</Position>
     </column>
-    <key id="571" parent="491">
+    <key id="575" parent="491">
       <ColNames>OrderId</ColNames>
       <Primary>1</Primary>
     </key>
-    <check id="572" parent="492">
+    <check id="576" parent="492">
       <Predicate>PaymentType IN (&apos;Credit card&apos;,
                                             &apos;PayPal&apos;,
                                             &apos;Cash&apos;)</Predicate>
     </check>
-    <column id="573" parent="492" name="PaymentId">
+    <column id="577" parent="492" name="PaymentId">
       <DasType>INTEGER|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="574" parent="492" name="OrderID">
+    <column id="578" parent="492" name="OrderID">
       <DasType>INTEGER|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="575" parent="492" name="PaymentType">
+    <column id="579" parent="492" name="PaymentType">
       <DasType>NVARCHAR(40)|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="576" parent="492" name="Timestamp">
+    <column id="580" parent="492" name="Timestamp">
       <DasType>DATETIME|0s</DasType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>4</Position>
     </column>
-    <key id="577" parent="492">
+    <key id="581" parent="492">
       <ColNames>PaymentId</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="578" parent="493" name="type">
+    <column id="582" parent="493" name="type">
       <DasType>TEXT|0s</DasType>
       <Position>1</Position>
     </column>
-    <column id="579" parent="493" name="name">
+    <column id="583" parent="493" name="name">
       <DasType>TEXT|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="580" parent="493" name="tbl_name">
+    <column id="584" parent="493" name="tbl_name">
       <DasType>TEXT|0s</DasType>
       <Position>3</Position>
     </column>
-    <column id="581" parent="493" name="rootpage">
+    <column id="585" parent="493" name="rootpage">
       <DasType>INT|0s</DasType>
       <Position>4</Position>
     </column>
-    <column id="582" parent="493" name="sql">
+    <column id="586" parent="493" name="sql">
       <DasType>TEXT|0s</DasType>
       <Position>5</Position>
     </column>

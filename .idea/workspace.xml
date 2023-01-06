@@ -4,21 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="First commit.">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations/cafe.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/outline_home_black_24dp.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/user.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/AdminBoard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/AdminBoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/Login.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/ManagementSys.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utility/DataPasser.java" afterDir="false" />
+    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Added JavaFX, started working on the interface.">
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafe-student-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/cafe-student-project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/AdminBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/AdminBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,16 +30,23 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="master" />
+        <entry key="$PROJECT_DIR$" value="javafx" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
   }
 }</component>
   <component name="GithubPullRequestsUISettings">
+    <option name="recentNewPullRequestHead">
+      <RepoCoordinatesHolder>
+        <option name="owner" value="ds-an" />
+        <option name="repository" value="cafe-student-project" />
+      </RepoCoordinatesHolder>
+    </option>
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
         <option name="accountId" value="cdd71166-9744-4aeb-949c-2adcd5eefeed" />
@@ -72,9 +71,10 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/vasily/IdeaProjects/cafe-student-project/src/graphics&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/vasily/Documents/Колледж/Проект-1&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -138,7 +138,14 @@
       <workItem from="1672768792052" duration="7519000" />
       <workItem from="1672825089022" duration="3417000" />
       <workItem from="1672842406812" duration="2085000" />
-      <workItem from="1672848187839" duration="2293000" />
+      <workItem from="1672848187839" duration="3926000" />
+      <workItem from="1672859917834" duration="2474000" />
+      <workItem from="1672908015555" duration="1033000" />
+      <workItem from="1672914935117" duration="606000" />
+      <workItem from="1672941140749" duration="1373000" />
+      <workItem from="1672942553230" duration="4950000" />
+      <workItem from="1673004575002" duration="3804000" />
+      <workItem from="1673015943601" duration="3837000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -147,7 +154,14 @@
       <option name="project" value="LOCAL" />
       <updated>1672069472963</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added JavaFX, started working on the interface.">
+      <created>1672850635921</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1672850635921</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -159,12 +173,17 @@
         <entry key="MAIN">
           <value>
             <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
               <option name="FILTERS">
                 <map>
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="javafx" />
+                        <option value="master" />
                       </list>
                     </value>
                   </entry>
@@ -179,7 +198,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="First commit." />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit." />
+    <MESSAGE value="Added JavaFX, started working on the interface." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added JavaFX, started working on the interface." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -196,13 +216,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>17</line>
+          <line>344</line>
           <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/LoginController.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/LoginController.java</url>
@@ -221,5 +236,8 @@
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
     <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/cafe_student_project$cafe.ic" NAME="cafe Coverage Results" MODIFIED="1672942164241" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
