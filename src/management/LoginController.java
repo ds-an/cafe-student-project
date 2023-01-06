@@ -29,7 +29,7 @@ public class LoginController {
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
-    private ResultSet users = Database.getData("SELECT * FROM access");
+    private ResultSet users;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -45,26 +45,31 @@ public class LoginController {
     public void changeSceneToUser(ActionEvent event) throws SQLException, IOException {
         // Как обеспечить повторный ввод в форму логина/пароля? Сейчас можно залогиниться
         // либо с первого раза, либо никак - после неудачной попытки залогиниться не удается.
+        users = Database.getData("SELECT * FROM access");
         String username = usernameField.getText();
-        String password = usernameField.getText();
-        while (users.next()) {
-            if (users.getString(2).equals(username) || users.getString(3).equals(username)
-                    && users.getString(4).equals(password)
-                    && users.getString(5).equals("Admin")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminBoard.fxml"));
-                root = loader.load();
-                AdminBoardController adminBoardController = loader.getController();
-                loader.setController(adminBoardController);
-                adminBoardController.setNameLabel(username);
-                adminBoardController.setCurrentDate();
+        String password = passwordField.getText();
+            while (users.next()) {
+                if ((users.getString(2).equals(username) || users.getString(3).equals(username))
+                        && users.getString(4).equals(password)
+                        && users.getString(5).equals("Admin")) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminBoard.fxml"));
+                    root = loader.load();
+                    AdminBoardController adminBoardController = loader.getController();
+                    loader.setController(adminBoardController);
+                    adminBoardController.setNameLabel(username);
+                    adminBoardController.setCurrentDate();
 //                root = FXMLLoader.load(getClass().getResource("AdminBoard.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
                     stage.show();
+                    break;
                 }
+                usernameField.clear();
+                passwordField.clear();
+                }
+//            users.first();
             }
-        }
     public void changeSceneToClient(ActionEvent event) {
 
     }
