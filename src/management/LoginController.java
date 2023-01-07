@@ -45,13 +45,13 @@ public class LoginController {
     public void changeSceneToUser(ActionEvent event) throws SQLException, IOException {
         // Как обеспечить повторный ввод в форму логина/пароля? Сейчас можно залогиниться
         // либо с первого раза, либо никак - после неудачной попытки залогиниться не удается.
-        users = Database.getData("SELECT * FROM access");
+        users = Database.getData("select * from full_login_info;");
         String username = usernameField.getText();
         String password = passwordField.getText();
             while (users.next()) {
-                if ((users.getString(2).equals(username) || users.getString(3).equals(username))
-                        && users.getString(4).equals(password)
-                        && users.getString(5).equals("Admin")) {
+                if ((users.getString(2).equals(username) || users.getString(4).equals(username))
+                        && users.getString(3).equals(password) && (users.getInt(1) > 0 &&
+                        users.getInt(1) < 10)) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("AdminBoard.fxml"));
                     root = loader.load();
                     AdminBoardController adminBoardController = loader.getController();
