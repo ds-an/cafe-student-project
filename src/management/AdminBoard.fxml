@@ -78,7 +78,7 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <TableView fx:id="ordeersTable" layoutX="14.0" layoutY="14.0" prefHeight="443.0" prefWidth="879.0">
+                                          <TableView fx:id="ordersTable" layoutX="14.0" layoutY="14.0" prefHeight="443.0" prefWidth="879.0">
                                             <columns>
                                               <TableColumn fx:id="orderTableOrderId" prefWidth="76.0" text="OrderID" />
                                               <TableColumn fx:id="orderTableClientId" prefWidth="73.0" text="ClientID" />

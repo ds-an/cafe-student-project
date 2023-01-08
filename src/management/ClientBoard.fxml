@@ -8,7 +8,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -31,22 +30,26 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="top-left" stylesheets="@ClientBoardFirstScreen.css">
                <children>
-                  <ImageView fx:id="welcomeImage" fitHeight="340.0" fitWidth="600.0" layoutY="-71.0" preserveRatio="true">
-                     <image>
-                        <Image url="@../graphics/want-to-retire-but-cant-quite-yet-welcome-to-barista-fire.jpg" />
-                     </image></ImageView>
-                  <Text fx:id="welcomeText" fill="#220101" layoutX="140.0" layoutY="144.0" stroke="#e4e2e2" strokeDashOffset="10.0" strokeType="INSIDE" strokeWidth="4.0" text="Welcome, Customer!" wrappingWidth="323.7294921875">
+                  <Text fx:id="welcomeText" fill="#220101" layoutX="140.0" layoutY="144.0" stroke="#e4e2e2" strokeDashOffset="10.0" strokeType="INSIDE" strokeWidth="20.0" text="Welcome, Customer!" wrappingWidth="323.7294921875">
                      <font>
                         <Font size="30.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="top-right" stylesheets="@ClientBoardFirstScreen.css" GridPane.columnIndex="1">
                <children>
-                  <ImageView fx:id="infoButtonImage" fitHeight="267.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
+                  <Text fill="#060114" layoutX="164.0" layoutY="143.0" stroke="#f2ecec" strokeDashOffset="10.0" strokeType="INSIDE" strokeWidth="4.0" text="Browse The Menu" wrappingWidth="274.7294921875">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="middle-left" stylesheets="@ClientBoardFirstScreen.css" GridPane.rowIndex="1">
+               <children>
                   <Text layoutX="163.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order At The Cafe" wrappingWidth="274.7294921875">
                      <font>
                         <Font size="30.0" />
@@ -54,19 +57,8 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="middle-right" stylesheets="@ClientBoardFirstScreen.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <ImageView fx:id="logOutButtonImage" fitHeight="267.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
-                  <Text layoutX="118.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Want to Leave Now? We Hope To See You Soon!" wrappingWidth="364.44921875">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <ImageView fx:id="orderButtonImage" fitHeight="267.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
                   <Text layoutX="208.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Order To Go" wrappingWidth="184.7294921875">
                      <font>
                         <Font size="30.0" />
@@ -74,22 +66,8 @@
                   </Text>
                </children>
             </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="bottom-left" stylesheets="@ClientBoardFirstScreen.css" GridPane.rowIndex="2">
                <children>
-                  <ImageView fx:id="menuButtonImage" fitHeight="452.0" fitWidth="790.0" layoutY="-185.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../graphics/805175cdc8fe77a652492b7d534002b7.jpg" />
-                     </image></ImageView>
-                  <Text fill="#060114" layoutX="164.0" layoutY="143.0" stroke="#f2ecec" strokeType="OUTSIDE" text="Browse The Menu" wrappingWidth="274.7294921875">
-                     <font>
-                        <Font size="30.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
-               <children>
-                  <ImageView fitHeight="267.0" fitWidth="600.0" pickOnBounds="true" preserveRatio="true" />
                   <Text layoutX="122.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Our Item Of The Day Is:" wrappingWidth="355.7294921875">
                      <font>
                         <Font size="30.0" />
@@ -98,6 +76,15 @@
                   <Text layoutX="81.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Some text about Item" wrappingWidth="437.7294921875">
                      <font>
                         <Font size="15.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="bottom-right" stylesheets="@ClientBoardFirstScreen.css" GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Text layoutX="118.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Want to Leave Now? We Hope To See You Soon!" wrappingWidth="364.44921875">
+                     <font>
+                        <Font size="30.0" />
                      </font>
                   </Text>
                </children>
