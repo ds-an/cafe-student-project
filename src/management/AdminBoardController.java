@@ -349,5 +349,4 @@ public class AdminBoardController {
         currentDate.setText("The date today is: " + LocalDate.now().toString());
     }
 
-    pub
 }

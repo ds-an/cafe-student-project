@@ -4,27 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Improved db and login mechanism.">
-      <change afterPath="$PROJECT_DIR$/src/graphics/805175cdc8fe77a652492b7d534002b7.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/Leather-Menu-Cover-H_Co-1023px_2048x.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-apple-juice-1366307.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-bake-2917633.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-coffee-bag-5540444.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-croissant-8490623.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-orange-juice-1880237.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-salad-4063400.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-sandwhich-5147079.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/free-icon-tea-herbal-1605958.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/graphics/want-to-retire-but-cant-quite-yet-welcome-to-barista-fire.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/ClientBoard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/ClientBoardController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/ClientBoardFirstScreen.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
+    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Latest &quot;improvents&quot;, lol.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/BaristaBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/BaristaBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -161,7 +142,7 @@
       <workItem from="1673004575002" duration="3804000" />
       <workItem from="1673015943601" duration="17306000" />
       <workItem from="1673092935801" duration="18017000" />
-      <workItem from="1673170427008" duration="2374000" />
+      <workItem from="1673170427008" duration="4099000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -198,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673097213178</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Latest &quot;improvents&quot;, lol.">
+      <created>1673177837220</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673177837220</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +227,8 @@
     <MESSAGE value="Added some tweaks to the GUI," />
     <MESSAGE value="Made login form work properly." />
     <MESSAGE value="Improved db and login mechanism." />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved db and login mechanism." />
+    <MESSAGE value="Latest &quot;improvents&quot;, lol." />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest &quot;improvents&quot;, lol." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
