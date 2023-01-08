@@ -43,8 +43,6 @@ public class LoginController {
     }
     @FXML
     public void changeSceneToUser(ActionEvent event) throws SQLException, IOException {
-        // Как обеспечить повторный ввод в форму логина/пароля? Сейчас можно залогиниться
-        // либо с первого раза, либо никак - после неудачной попытки залогиниться не удается.
         users = Database.getData("select * from full_login_info;");
         String username = usernameField.getText();
         String password = passwordField.getText();
@@ -64,14 +62,47 @@ public class LoginController {
                     stage.setScene(scene);
                     stage.show();
                     break;
+                }else if ((users.getString(2).equals(username) || users.getString(4).equals(username))
+                        && users.getString(3).equals(password) && (users.getInt(1) > 9 &&
+                        users.getInt(1) < 100)) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("BaristaBoard.fxml"));
+                    root = loader.load();
+                    BaristaBoardController baristaBoardController = loader.getController();
+                    loader.setController(baristaBoardController);
+                    baristaBoardController.setNameLabel(username);
+                    baristaBoardController.setCurrentDate();
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    break;
+                }else if ((users.getString(2).equals(username) || users.getString(4).equals(username))
+                        && users.getString(3).equals(password) && (users.getInt(1) > 99)) {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("ClientBoard.fxml"));
+                    root = loader.load();
+                    ClientBoardController clientBoardController = loader.getController();
+                    loader.setController(clientBoardController);
+                    clientBoardController.setNameLabel(username);
+                    stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                    break;
                 }
                 usernameField.clear();
                 passwordField.clear();
                 }
 //            users.first();
             }
-    public void changeSceneToClient(ActionEvent event) {
-
+    public void changeSceneToClient(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ClientBoard.fxml"));
+        root = loader.load();
+        ClientBoardController clientBoardController = loader.getController();
+        loader.setController(clientBoardController);
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 //    public static void main(String[] args) throws SQLException {

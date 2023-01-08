@@ -1,0 +1,39 @@
+.top-left{
+    -fx-background-color: linear-gradient(to bottom right, #25bcbf, #3796a7);
+    -fx-background-radius: 5px;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .2px .4px;
+}
+
+.top-right{
+    -fx-background-color: linear-gradient(to bottom left, #7FFFD4, #6495ED);
+    -fx-background-radius: 5px;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px .4px;
+}
+.middle-left{
+    -fx-background-color: linear-gradient(to bottom left, #E6E6FA, #E0FFFF);
+    -fx-background-radius: 5px;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px .4px;
+}
+
+.middle-right{
+    -fx-background-color: linear-gradient(to bottom left, #7FFFD4, #6495ED);
+    -fx-background-radius: 5px;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px .4px;
+}
+.bottom-left{
+    -fx-background-color: linear-gradient(to bottom left, #7FFFD4, #6495ED);
+    -fx-background-radius: 5px;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px .4px;
+}
+
+.bottom-right{
+    -fx-background-color: linear-gradient(to bottom left, #7FFFD4, #6495ED);
+    -fx-background-radius: 5px;
+    -fx-border-color: #000;
+    -fx-border-width: .4px .4px .4px .4px;
+}
