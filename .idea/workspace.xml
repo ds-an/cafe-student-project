@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Added some tweaks to the GUI,">
-      <change afterPath="$PROJECT_DIR$/src/management/BaristaBoard.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/management/BaristaBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
+    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Latest &quot;improvents&quot;, lol.">
+      <change beforePath="$PROJECT_DIR$/src/management/AdminBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/ClientBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/ClientBoard.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,9 +17,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaFXApplication" />
-        <option value="CSS File" />
         <option value="FxmlFile" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -64,37 +61,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TODO_SCOPE": "All Places",
-    "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/vasily/Documents/Колледж/Проект-1",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "editor.preferences.gutterIcons",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/vasily/Documents/Колледж/Проект-1&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;editor.preferences.gutterIcons&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql",
-      "sqlite"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;,
+      &quot;sqlite&quot;
     ],
-    "RunConfigurationTargetLRU": [
-      "0e2b1e8d-c377-4116-a885-0320e3412b42"
+    &quot;RunConfigurationTargetLRU&quot;: [
+      &quot;0e2b1e8d-c377-4116-a885-0320e3412b42&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/graphics" />
@@ -144,7 +141,9 @@
       <workItem from="1672941140749" duration="1373000" />
       <workItem from="1672942553230" duration="4950000" />
       <workItem from="1673004575002" duration="3804000" />
-      <workItem from="1673015943601" duration="13507000" />
+      <workItem from="1673015943601" duration="17306000" />
+      <workItem from="1673092935801" duration="18017000" />
+      <workItem from="1673170427008" duration="4724000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -167,7 +166,35 @@
       <option name="project" value="LOCAL" />
       <updated>1673020309547</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Made login form work properly.">
+      <created>1673035721612</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1673035721612</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Improved db and login mechanism.">
+      <created>1673097213178</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1673097213178</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Latest &quot;improvents&quot;, lol.">
+      <created>1673177837220</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1673177837220</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Latest &quot;improvents&quot;, lol.">
+      <created>1673179397263</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1673179397263</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -206,7 +233,10 @@
     <MESSAGE value="First commit." />
     <MESSAGE value="Added JavaFX, started working on the interface." />
     <MESSAGE value="Added some tweaks to the GUI," />
-    <option name="LAST_COMMIT_MESSAGE" value="Added some tweaks to the GUI," />
+    <MESSAGE value="Made login form work properly." />
+    <MESSAGE value="Improved db and login mechanism." />
+    <MESSAGE value="Latest &quot;improvents&quot;, lol." />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest &quot;improvents&quot;, lol." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

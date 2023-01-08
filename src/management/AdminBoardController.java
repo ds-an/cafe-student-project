@@ -222,7 +222,7 @@ public class AdminBoardController {
     private Tab numberOfOrdersTab;
 
     @FXML
-    private TableView<?> ordeersTable;
+    private TableView<?> ordersTable;
 
     @FXML
     private TableColumn<?, ?> orderTableBaristaId;

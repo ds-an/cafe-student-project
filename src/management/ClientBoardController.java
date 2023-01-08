@@ -3,24 +3,56 @@ package management;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 
-public class BaristaBoardController {
+public class ClientBoardController {
 
     @FXML
-    private Button acceptPaymert;
+    private Button addCoffeeToOrder;
 
     @FXML
-    private Button addItem;
+    private Button addDrinkToOrder;
+
+    @FXML
+    private Button addFoodToOrder;
+
+    @FXML
+    private Button addTeaToOrder;
+
+    @FXML
+    private ComboBox<?> chooseCoffee;
+
+    @FXML
+    private ComboBox<?> chooseCoffeeMilk;
+
+    @FXML
+    private ComboBox<?> chooseCoffeeRoast;
+
+    @FXML
+    private ComboBox<?> chooseDrink;
+
+    @FXML
+    private ComboBox<?> chooseFood;
+
+    @FXML
+    private ComboBox<?> chooseTea;
+
+    @FXML
+    private ComboBox<?> chooseTeaMilk;
+
+    @FXML
+    private ComboBox<?> chooseTeaType;
+
+    @FXML
+    private Button clearOrderButton;
 
     @FXML
     private TableView<?> coffeeTable;
@@ -50,7 +82,7 @@ public class BaristaBoardController {
     private TableColumn<?, ?> coffeeTotalLeft;
 
     @FXML
-    private Label currentDate;
+    private Text descriptionItem;
 
     @FXML
     private TableColumn<?, ?> drinkTableID;
@@ -119,70 +151,54 @@ public class BaristaBoardController {
     private TableColumn<?, ?> fullMenuTotalLeft;
 
     @FXML
-    private Button getReceipt;
+    private Button goBack;
 
     @FXML
-    private TextField itemAmount;
+    private Button goBackFromOrder;
 
     @FXML
-    private TextField itemId;
+    private ImageView infoButtonImage;
 
     @FXML
-    private Button logOut;
+    private ImageView logOutButtonImage;
 
     @FXML
-    private MenuItem menuOrderAlphabetical;
+    private ImageView menuButtonImage;
+
+    private ImageView welcomeImage;
 
     @FXML
-    private MenuItem menuOrderOriginal;
+    private Text nameItem;
 
     @FXML
-    private MenuItem menuOrderPriceDec;
+    private ImageView orderButtonImage;
 
     @FXML
-    private MenuItem menuOrderPriceInc;
-
-    @FXML
-    private MenuItem menuOrderReverseAlphabetical;
-
-    @FXML
-    private MenuButton orderByMenu;
-
-    @FXML
-    private TextField orderId;
+    private Button orderNow;
 
     @FXML
     private TableView<?> orderTable;
 
     @FXML
-    private TableColumn<?, ?> orderTableItemId;
+    private TableColumn<?, ?> orderTableDescription;
 
     @FXML
-    private TableColumn<?, ?> orderTableItemName;
+    private TableColumn<?, ?> orderTableName;
 
     @FXML
-    private TableColumn<?, ?> orderTableItemPrice;
+    private TableColumn<?, ?> orderTablePrice;
 
     @FXML
-    private TableColumn<?, ?> orderTableItemQuantity;
+    private TableColumn<?, ?> orderTableType;
 
     @FXML
-    private TableColumn<?, ?> orderTableItemType;
+    private Button payWithCash;
 
     @FXML
-    private ComboBox<?> paymentOption;
+    private Button payWithCreditCard;
 
     @FXML
-    private TableView<?> paymentTable;
-
-    @FXML
-    private TableColumn<?, ?> paymentTableOrderStatus;
-
-    @FXML
-    private TableColumn<?, ?> paymentsTableOrderId;
-
-    @FXML
-    private Button takeOrder;
+    private Button payWithPayPal;
 
     @FXML
     private TableView<?> teaTable;
@@ -212,21 +228,9 @@ public class BaristaBoardController {
     private TableColumn<?, ?> teaTotalLeft;
 
     @FXML
-    private RadioButton toGoToggle;
-
-    @FXML
-    private Text totalText;
-
-    @FXML
-    private Label welcomeText;
+    private Text welcomeText;
 
     public void setNameLabel(String username) {
         welcomeText.setText("Welcome, " + username);
     }
-
-    public void setCurrentDate() {
-        currentDate.setText("The date today is: " + LocalDate.now().toString());
-    }
-
 }
-
