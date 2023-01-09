@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import utility.DataPasser;
 import utility.Database;
 
 import java.io.IOException;
@@ -56,6 +55,9 @@ public class LoginController {
                     loader.setController(adminBoardController);
                     adminBoardController.setNameLabel(username);
                     adminBoardController.setCurrentDate();
+                    adminBoardController.populateItemTypeBox();
+                    adminBoardController.populateComboBoxes();
+                    adminBoardController.populateTables();
 //                root = FXMLLoader.load(getClass().getResource("AdminBoard.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);

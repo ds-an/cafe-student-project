@@ -40,22 +40,22 @@
             <Separator layoutX="-2.0" layoutY="39.0" prefHeight="3.0" prefWidth="1200.0" />
             <AnchorPane layoutY="41.0" prefHeight="759.0" prefWidth="252.0">
                <children>
-                  <Button fx:id="dashBoardButton" layoutX="51.0" layoutY="60.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Dashboard">
+                  <Button fx:id="dashBoardButton" layoutX="51.0" layoutY="60.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="57.0" prefWidth="150.0" text="Dashboard">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="itemsButton" layoutX="51.0" layoutY="152.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Items">
+                  <Button fx:id="itemsButton" layoutX="51.0" layoutY="152.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="57.0" prefWidth="150.0" text="Items">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="employeesButton" layoutX="51.0" layoutY="245.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Employees">
+                  <Button fx:id="employeesButton" layoutX="51.0" layoutY="245.0" mnemonicParsing="false" onAction="#switchForm" prefHeight="57.0" prefWidth="150.0" text="Employees">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="logOutButton" layoutX="51.0" layoutY="650.0" mnemonicParsing="false" prefHeight="57.0" prefWidth="150.0" text="Log Out">
+                  <Button fx:id="logOutButton" layoutX="51.0" layoutY="650.0" mnemonicParsing="false" onAction="#logOut" prefHeight="57.0" prefWidth="150.0" text="Log Out">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -78,18 +78,24 @@
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <TableView fx:id="ordersTable" layoutX="14.0" layoutY="14.0" prefHeight="443.0" prefWidth="879.0">
+                                          <TableView fx:id="ordersTable" layoutX="14.0" layoutY="14.0" prefHeight="440.0" prefWidth="614.0">
                                             <columns>
                                               <TableColumn fx:id="orderTableOrderId" prefWidth="76.0" text="OrderID" />
                                               <TableColumn fx:id="orderTableClientId" prefWidth="73.0" text="ClientID" />
                                                 <TableColumn fx:id="orderTableBaristaId" prefWidth="74.0" text="BaristaID" />
-                                                <TableColumn fx:id="orderTableDrinkId" prefWidth="77.0" text="DrinkID" />
-                                                <TableColumn fx:id="orderTableFoodId" prefWidth="73.0" text="FoodID" />
                                                 <TableColumn fx:id="orderTableTimestamp" prefWidth="156.0" text="Timestamp" />
-                                                <TableColumn fx:id="orderTableTotal" minWidth="1.0" prefWidth="128.0" text="Total" />
-                                                <TableColumn fx:id="orderTablePaymentStatus" prefWidth="221.0" text="PaymentStatus" />
+                                                <TableColumn fx:id="orderTableTotal" minWidth="1.0" prefWidth="87.0" text="Total" />
+                                                <TableColumn fx:id="orderTablePaymentStatus" prefWidth="147.0" text="PaymentStatus" />
                                             </columns>
                                           </TableView>
+                                          <Label layoutX="711.0" layoutY="60.0" text="Order ID:" />
+                                          <TextField fx:id="orderId" layoutX="775.0" layoutY="56.0" prefHeight="24.0" prefWidth="56.0" />
+                                          <Button fx:id="orderDetails" layoutX="712.0" layoutY="92.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="118.0" text="Get Details">
+                                             <font>
+                                                <Font size="15.0" />
+                                             </font>
+                                          </Button>
+                                          <Separator layoutX="640.0" layoutY="4.0" orientation="VERTICAL" prefHeight="460.0" prefWidth="6.0" />
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -175,7 +181,7 @@
                                  <font>
                                     <Font size="15.0" />
                                  </font></Button>
-                              <ComboBox fx:id="itemType" layoutX="114.0" layoutY="36.0" prefHeight="24.0" prefWidth="137.0" />
+                              <ComboBox fx:id="itemType" layoutX="114.0" layoutY="36.0" onAction="#switchItemsChoiceView" prefHeight="24.0" prefWidth="137.0" />
                               <Button fx:id="updateItemButton" layoutX="21.0" layoutY="559.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" text="Update">
                                  <font>
                                     <Font size="15.0" />

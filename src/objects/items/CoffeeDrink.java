@@ -1,24 +1,25 @@
 package objects.items;
+import javafx.beans.property.SimpleStringProperty;
 import utility.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class CoffeeDrink extends Item {
-    private String MilkType;
-    private String Temperature;
+    private SimpleStringProperty MilkType;
+    private SimpleStringProperty Temperature;
 
     public CoffeeDrink() {
         super();
-        this.MilkType = null;
-        this.Temperature = null;
+        this.MilkType = new SimpleStringProperty();
+        this.Temperature = new SimpleStringProperty();
     }
 
     public CoffeeDrink(String itemName, String itemType, String milkType,
                        String temperature, float priceInside, float priceOutside, int totalLeft) {
         super(itemName, itemType, priceInside, priceOutside, totalLeft);
-        this.MilkType = milkType;
-        this.Temperature = temperature;
+        this.MilkType = new SimpleStringProperty(milkType);
+        this.Temperature = new SimpleStringProperty(temperature);
     }
 
     @Override
@@ -27,6 +28,30 @@ public class CoffeeDrink extends Item {
                 super.getItemName(), super.getItemType(), this.MilkType, this.Temperature,
                 super.getPriceInside(), super.getPriceOutside(), super.getTotalLeft());
         Database.inputData(query);
+    }
+
+    public String getMilkType() {
+        return MilkType.get();
+    }
+
+    public SimpleStringProperty milkTypeProperty() {
+        return MilkType;
+    }
+
+    public void setMilkType(String milkType) {
+        this.MilkType.set(milkType);
+    }
+
+    public String getTemperature() {
+        return Temperature.get();
+    }
+
+    public SimpleStringProperty temperatureProperty() {
+        return Temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.Temperature.set(temperature);
     }
 
     public static void main(String[] args) throws SQLException {

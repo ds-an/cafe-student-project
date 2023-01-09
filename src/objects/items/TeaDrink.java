@@ -1,23 +1,48 @@
 package objects.items;
+import javafx.beans.property.SimpleStringProperty;
 import utility.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 public class TeaDrink extends Item{
-    private String MilkType;
-    private String Temperature;
+    private SimpleStringProperty MilkType;
+    private SimpleStringProperty Temperature;
 
     public TeaDrink() {
         super();
-        this.MilkType = null;
-        this.Temperature = null;
+        this.MilkType = new SimpleStringProperty();
+        this.Temperature = new SimpleStringProperty();
     }
 
     public TeaDrink(String itemName, String itemType, String milkType,
                        String temperature, float priceInside, float priceOutside, int totalLeft) {
         super(itemName, itemType, priceInside, priceOutside, totalLeft);
-        this.MilkType = milkType;
-        this.Temperature = temperature;
+        this.MilkType = new SimpleStringProperty(milkType);
+        this.Temperature = new SimpleStringProperty(temperature);
+    }
+
+    public String getMilkType() {
+        return MilkType.get();
+    }
+
+    public SimpleStringProperty milkTypeProperty() {
+        return MilkType;
+    }
+
+    public void setMilkType(String milkType) {
+        this.MilkType.set(milkType);
+    }
+
+    public String getTemperature() {
+        return Temperature.get();
+    }
+
+    public SimpleStringProperty temperatureProperty() {
+        return Temperature;
+    }
+
+    public void setTemperature(String temperature) {
+        this.Temperature.set(temperature);
     }
 
     @Override
