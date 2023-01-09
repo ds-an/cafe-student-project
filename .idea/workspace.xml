@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Some buttons are working and tables are filled in the manager's dashboard.">
+    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Big improvements on the barista dashboard: all tables populated, can now add items to order.">
       <change afterPath="$PROJECT_DIR$/src/objects/items/FullMenuItem.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/objects/processes/TakingOrder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/BaristaBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/BaristaBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoardController.java" afterDir="false" />
@@ -172,7 +171,7 @@
       <workItem from="1673170427008" duration="10676000" />
       <workItem from="1673200140900" duration="5665000" />
       <workItem from="1673256730007" duration="13099000" />
-      <workItem from="1673272095189" duration="18391000" />
+      <workItem from="1673272095189" duration="18763000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -237,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673280653411</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Big improvements on the barista dashboard: all tables populated, can now add items to order.">
+      <created>1673292528394</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673292528394</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -280,7 +286,8 @@
     <MESSAGE value="Improved db and login mechanism." />
     <MESSAGE value="Latest &quot;improvents&quot;, lol." />
     <MESSAGE value="Some buttons are working and tables are filled in the manager's dashboard." />
-    <option name="LAST_COMMIT_MESSAGE" value="Some buttons are working and tables are filled in the manager's dashboard." />
+    <MESSAGE value="Big improvements on the barista dashboard: all tables populated, can now add items to order." />
+    <option name="LAST_COMMIT_MESSAGE" value="Big improvements on the barista dashboard: all tables populated, can now add items to order." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

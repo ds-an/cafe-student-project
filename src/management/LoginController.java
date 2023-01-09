@@ -73,6 +73,7 @@ public class LoginController {
                     loader.setController(baristaBoardController);
                     baristaBoardController.setNameLabel(username);
                     baristaBoardController.setCurrentDate();
+                    baristaBoardController.populateTables();
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
