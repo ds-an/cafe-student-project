@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Latest &quot;improvents&quot;, lol.">
+      <change afterPath="$PROJECT_DIR$/src/objects/processes/Order.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/objects/processes/Payment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/AdminBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/ClientBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/ClientBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/AdminBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/items/CoffeeDrink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/CoffeeDrink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/items/TeaDrink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/TeaDrink.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/Barista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Barista.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,8 +30,8 @@
       <list>
         <option value="JavaFXApplication" />
         <option value="FxmlFile" />
-        <option value="Class" />
         <option value="CSS File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -143,7 +155,10 @@
       <workItem from="1673004575002" duration="3804000" />
       <workItem from="1673015943601" duration="17306000" />
       <workItem from="1673092935801" duration="18017000" />
-      <workItem from="1673170427008" duration="4724000" />
+      <workItem from="1673170427008" duration="10676000" />
+      <workItem from="1673200140900" duration="5665000" />
+      <workItem from="1673256730007" duration="13099000" />
+      <workItem from="1673272095189" duration="8171000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -194,7 +209,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673179397263</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Latest &quot;improvents&quot;, lol.">
+      <created>1673181294743</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1673181294743</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,8 +275,58 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>344</line>
+          <line>582</line>
           <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>583</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>584</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>589</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>569</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>568</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>570</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>571</line>
+          <option name="timeStamp" value="36" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>573</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>572</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
+          <line>574</line>
+          <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/utility/DataPasser.java</url>
