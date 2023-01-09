@@ -4,21 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Latest &quot;improvents&quot;, lol.">
-      <change afterPath="$PROJECT_DIR$/src/objects/processes/Order.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/objects/processes/Payment.java" afterDir="false" />
+    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Big improvements on the barista dashboard: all tables populated, can now add items to order.">
+      <change afterPath="$PROJECT_DIR$/src/objects/items/FullMenuItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/objects/processes/TakingOrder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/AdminBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/AdminBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/BaristaBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoard.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/BaristaBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/CoffeeDrink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/CoffeeDrink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/TeaDrink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/TeaDrink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/Barista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Barista.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,10 +109,29 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.cafe">
+    <configuration name="BaristaBoardController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="management.BaristaBoardController" />
+      <module name="cafe-student-project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="management.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.cafe" />
+      <item itemvalue="Application.BaristaBoardController" />
       <item itemvalue="Database Script.createdb1.sql" />
     </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.BaristaBoardController" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -158,7 +171,7 @@
       <workItem from="1673170427008" duration="10676000" />
       <workItem from="1673200140900" duration="5665000" />
       <workItem from="1673256730007" duration="13099000" />
-      <workItem from="1673272095189" duration="8171000" />
+      <workItem from="1673272095189" duration="18763000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -216,7 +229,21 @@
       <option name="project" value="LOCAL" />
       <updated>1673181294743</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Some buttons are working and tables are filled in the manager's dashboard.">
+      <created>1673280653411</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1673280653411</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Big improvements on the barista dashboard: all tables populated, can now add items to order.">
+      <created>1673292528394</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1673292528394</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +285,9 @@
     <MESSAGE value="Made login form work properly." />
     <MESSAGE value="Improved db and login mechanism." />
     <MESSAGE value="Latest &quot;improvents&quot;, lol." />
-    <option name="LAST_COMMIT_MESSAGE" value="Latest &quot;improvents&quot;, lol." />
+    <MESSAGE value="Some buttons are working and tables are filled in the manager's dashboard." />
+    <MESSAGE value="Big improvements on the barista dashboard: all tables populated, can now add items to order." />
+    <option name="LAST_COMMIT_MESSAGE" value="Big improvements on the barista dashboard: all tables populated, can now add items to order." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -275,57 +304,57 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>582</line>
+          <line>583</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>583</line>
+          <line>584</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>584</line>
+          <line>585</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>589</line>
+          <line>590</line>
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>569</line>
+          <line>570</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>568</line>
+          <line>569</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>570</line>
+          <line>571</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>571</line>
+          <line>572</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>573</line>
+          <line>574</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>572</line>
+          <line>573</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/management/AdminBoardController.java</url>
-          <line>574</line>
+          <line>575</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
