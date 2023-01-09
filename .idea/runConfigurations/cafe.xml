@@ -2,7 +2,7 @@
   <configuration default="false" name="cafe" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="management.ManagementSys" />
     <module name="cafe-student-project" />
-    <option name="VM_PARAMETERS" value="--module-path $USER_HOME$/Desktop/Documents/Колледж/Проект-1/javafx-sdk-19/lib/ --add-modules javafx.controls,javafx.fxml " />
+    <option name="VM_PARAMETERS" value="--module-path C:\Users\Danis\javafx-sdk-19\lib --add-modules javafx.controls,javafx.fxml " />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
