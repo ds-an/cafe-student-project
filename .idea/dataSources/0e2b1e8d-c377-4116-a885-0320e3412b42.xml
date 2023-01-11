@@ -1645,7 +1645,6 @@
     </column>
     <column id="568" parent="491" name="ClientId">
       <DasType>INTEGER|0s</DasType>
-      <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
     <column id="569" parent="491" name="BaristaId">

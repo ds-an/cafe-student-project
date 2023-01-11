@@ -4,34 +4,36 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import objects.items.*;
 import objects.processes.Order;
 import objects.processes.TakingOrder;
 import utility.Database;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Objects;
 
 public class BaristaBoardController {
-
+    @FXML
+    private AnchorPane creditCardPane;
+    @FXML
+    private TextField creditCardField;
     @FXML
     private Button acceptPaymert;
 
     @FXML
     private Button addItem;
+
+    @FXML
+    private Button removeItem;
 
     @FXML
     private TableView<CoffeeDrink> coffeeTable;
@@ -139,6 +141,9 @@ public class BaristaBoardController {
     private TextField itemId;
 
     @FXML
+    private TextField clientId;
+
+    @FXML
     private Button logOut;
 
     @FXML
@@ -235,6 +240,10 @@ public class BaristaBoardController {
 
     private ArrayList<TakingOrder> orderList = new ArrayList<>();
 
+    private int baristaId;
+
+    private int ordertotal;
+
     public void setNameLabel(String username) {
         welcomeText.setText("Welcome, " + username);
     }
@@ -245,7 +254,7 @@ public class BaristaBoardController {
 
     public void populateTables() throws SQLException {
         {
-            ResultSet data = Database.getData("SELECT * FROM drinkscoffee");
+            ResultSet data = Database.getData("SELECT * FROM drinkscoffee;");
             ArrayList<CoffeeDrink> items = new ArrayList<>();
             while (data.next()) {
                 CoffeeDrink drink = new CoffeeDrink();
@@ -259,6 +268,7 @@ public class BaristaBoardController {
                 drink.setTotalLeft(data.getInt(8));
                 items.add(drink);
             }
+            data.close();
             ObservableList<CoffeeDrink> coffeeDrinks = FXCollections.observableArrayList(items);
             coffeeTableId.setCellValueFactory(new PropertyValueFactory<>("id"));
             coffeeTableName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
@@ -271,7 +281,7 @@ public class BaristaBoardController {
             coffeeTable.setItems(coffeeDrinks);
         }
         {
-            ResultSet data = Database.getData("SELECT * FROM drinkstea");
+            ResultSet data = Database.getData("SELECT * FROM drinkstea;");
             ArrayList<TeaDrink> items = new ArrayList<>();
             while (data.next()) {
                 TeaDrink drink = new TeaDrink();
@@ -285,6 +295,7 @@ public class BaristaBoardController {
                 drink.setTotalLeft(data.getInt(8));
                 items.add(drink);
             }
+            data.close();
             ObservableList<TeaDrink> teaDrinks = FXCollections.observableArrayList(items);
             teaTableId.setCellValueFactory(new PropertyValueFactory<>("id"));
             teaTableName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
@@ -297,7 +308,7 @@ public class BaristaBoardController {
             teaTable.setItems(teaDrinks);
         }
         {
-            ResultSet data = Database.getData("SELECT * FROM drinksother");
+            ResultSet data = Database.getData("SELECT * FROM drinksother;");
             ArrayList<OtherDrink> items = new ArrayList<>();
             while (data.next()) {
                 OtherDrink drink = new OtherDrink();
@@ -309,6 +320,7 @@ public class BaristaBoardController {
                 drink.setTotalLeft(data.getInt(5));
                 items.add(drink);
             }
+            data.close();
             ObservableList<OtherDrink> otherDrinks = FXCollections.observableArrayList(items);
             drinkTableID.setCellValueFactory(new PropertyValueFactory<>("id"));
             drinkTableName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
@@ -318,7 +330,7 @@ public class BaristaBoardController {
             drinksTable.setItems(otherDrinks);
         }
         {
-            ResultSet data = Database.getData("SELECT * FROM food");
+            ResultSet data = Database.getData("SELECT * FROM food;");
             ArrayList<Food> items = new ArrayList<>();
             while (data.next()) {
                 Food food = new Food();
@@ -330,6 +342,7 @@ public class BaristaBoardController {
                 food.setTotalLeft(data.getInt(6));
                 items.add(food);
             }
+            data.close();
             ObservableList<Food> otherfoods = FXCollections.observableArrayList(items);
             foodTableId.setCellValueFactory(new PropertyValueFactory<>("id"));
             foodTableName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
@@ -340,7 +353,7 @@ public class BaristaBoardController {
             foodTable.setItems(otherfoods);
         }
         {
-            ResultSet data = Database.getData("SELECT * FROM full_menu");
+            ResultSet data = Database.getData("SELECT * FROM full_menu;");
             ArrayList<FullMenuItem> items = new ArrayList<>();
             while (data.next()) {
                 FullMenuItem item = new FullMenuItem();
@@ -354,6 +367,7 @@ public class BaristaBoardController {
                 item.setTotalLeft(data.getInt(8));
                 items.add(item);
             }
+            data.close();
             ObservableList<FullMenuItem> fullMenuItems = FXCollections.observableArrayList(items);
             fullMenuTableId.setCellValueFactory(new PropertyValueFactory<>("id"));
             fullMenuTableName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
@@ -366,7 +380,7 @@ public class BaristaBoardController {
             fullMenuTable.setItems(fullMenuItems);
         }
         {
-            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders");
+            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
             ArrayList<Order> items = new ArrayList<>();
             while (data.next()) {
                 Order item = new Order();
@@ -374,6 +388,8 @@ public class BaristaBoardController {
                 item.setOrderPaymentStatus(data.getString(2));
                 items.add(item);
             }
+            data.close();
+            items.sort(Comparator.comparing(Order :: getOrderId).reversed());
             ObservableList<Order> orders = FXCollections.observableArrayList(items);
             paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
             paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
@@ -385,15 +401,60 @@ public class BaristaBoardController {
         TakingOrder item = new TakingOrder();
         int itemid = Integer.parseInt(itemId.getText());
         item.setItemId(itemid);
-        item.setItemName(Database.getData(String.format("SELECT ItemName FROM full_menu WHERE ItemId = %d", itemid)).getString(1));
-        item.setItemType(Database.getData(String.format("SELECT ItemType FROM full_menu WHERE ItemId = %d", itemid)).getString(1));
+        ResultSet getitemname = Database.getData(String.format("SELECT ItemName FROM full_menu WHERE ItemId = %d;", itemid));
+        item.setItemName(getitemname.getString(1));
+        getitemname.close();
+        ResultSet getitemtype = Database.getData(String.format("SELECT ItemType FROM full_menu WHERE ItemId = %d;", itemid));
+        item.setItemType(getitemtype.getString(1));
+        getitemtype.close();
         if (toGoToggle.isSelected()) {
-            item.setItemPrice(Database.getData(String.format("SELECT PriceOutside FROM full_menu WHERE ItemId = %d", itemid)).getInt(1));
+            ResultSet getitemprice = Database.getData(String.format("SELECT PriceOutside FROM full_menu WHERE ItemId = %d;", itemid));
+            item.setItemPrice(getitemprice.getInt(1));
+            getitemprice.close();
         }else {
-            item.setItemPrice(Database.getData(String.format("SELECT PriceInside FROM full_menu WHERE ItemId = %d", itemid)).getInt(1));
+            ResultSet getitemprice = Database.getData(String.format("SELECT PriceInside FROM full_menu WHERE ItemId = %d;", itemid));
+            item.setItemPrice(getitemprice.getInt(1));
+            getitemprice.close();
         }
         item.setItemQuantity(Integer.parseInt(itemAmount.getText()));
-        orderList.add(item);
+        ResultSet getitemtotalleftrs = Database.getData(String.format("SELECT TotalLeft FROM full_menu WHERE ItemId = %d;", itemid));
+        int itemtotalleft = getitemtotalleftrs.getInt(1);
+        getitemtotalleftrs.close();
+        if (itemtotalleft - item.getItemQuantity() < 0) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "This item is out of stock.", ButtonType.CLOSE);
+            alert.show();
+        } else {
+            orderList.add(item);
+            ObservableList<TakingOrder> order = FXCollections.observableArrayList(orderList);
+            orderTableItemId.setCellValueFactory(new PropertyValueFactory<>("ItemId"));
+            orderTableItemName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
+            orderTableItemType.setCellValueFactory(new PropertyValueFactory<>("ItemType"));
+            orderTableItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
+            orderTableItemQuantity.setCellValueFactory(new PropertyValueFactory<>("ItemQuantity"));
+            orderTable.setItems(order);
+            int total = 0;
+            for (int i = 0; i < orderList.size(); i++) {
+                total += orderList.get(i).getItemPrice();
+            }
+            totalText.setText("Total: " + Integer.toString(total) + "$");
+        }
+    }
+
+    public void populateComboBoxes() {
+        ObservableList paymentoptions = FXCollections.observableArrayList(paymentOptions);
+        paymentOption.setItems(paymentoptions);
+    }
+
+    public void switchPanes(ActionEvent event) {
+        if (paymentOption.getValue() == "Credit card") {
+            creditCardPane.setVisible(true);
+        } else {
+            creditCardPane.setVisible(false);
+        }
+    }
+
+    public void removeFromOrder(ActionEvent event) throws SQLException {
+        orderList.remove(orderList.size() - 1);
         ObservableList<TakingOrder> order = FXCollections.observableArrayList(orderList);
         orderTableItemId.setCellValueFactory(new PropertyValueFactory<>("ItemId"));
         orderTableItemName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
@@ -401,7 +462,165 @@ public class BaristaBoardController {
         orderTableItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
         orderTableItemQuantity.setCellValueFactory(new PropertyValueFactory<>("ItemQuantity"));
         orderTable.setItems(order);
+        for (int i = 0; i < orderList.size(); i++) {
+            ordertotal += orderList.get(i).getItemPrice();
+        }
+        totalText.setText("Total: " + Integer.toString(ordertotal) + "$");
     }
 
+    public void takeOrder(ActionEvent event) throws SQLException {
+        Order resultingorder = new Order();
+        String orderdetails = "The order is: ";
+        if (clientId.getText().isEmpty()) {
+            resultingorder.setClientId(0);
+        } else {
+            resultingorder.setClientId(Integer.parseInt(clientId.getText()));
+        }
+        resultingorder.setBaristaId(baristaId);
+        resultingorder.setOrderTotal(ordertotal);
+        resultingorder.setOrderPaymentStatus("Unpayed");
+        if (toGoToggle.isSelected()) {
+            resultingorder.setOrderType("To Go");
+        } else {
+            resultingorder.setOrderType("Inside");
+        }
+        resultingorder.setOrderTimestamp(null);
+        for (TakingOrder item: orderList) {
+            orderdetails += item.getItemName() + " x" + item.getItemQuantity() + ",";
+        }
+        String orderdetailsf = orderdetails.substring(0, orderdetails.length() - 1) + ".";
+        resultingorder.setOrderDetails(orderdetailsf);
+        resultingorder.insertOrder();
+        orderList.clear();
+        clientId.setText("");
+        itemAmount.setText("1");
+        itemId.setText("");
+        orderTable.getItems().clear();
+        {
+            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
+            ArrayList<Order> items = new ArrayList<>();
+            while (data.next()) {
+                Order item = new Order();
+                item.setOrderId(data.getInt(1));
+                item.setOrderPaymentStatus(data.getString(2));
+                items.add(item);
+            }
+            data.close();
+            items.sort(Comparator.comparing(Order :: getOrderId).reversed());
+            ObservableList<Order> orders = FXCollections.observableArrayList(items);
+            paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
+            paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
+            paymentTable.setItems(orders);
+        }
+    }
+
+    public void toGoToggleSwitch(ActionEvent event) throws SQLException {
+        if (toGoToggle.isSelected()) {
+            for (TakingOrder item : orderList) {
+                ResultSet getitemprice = Database.getData(String.format("SELECT PriceOutside FROM full_menu WHERE ItemId = %d;", item.getItemId()));
+                item.setItemPrice(getitemprice.getInt(1));
+                getitemprice.close();
+            }
+            ObservableList<TakingOrder> order = FXCollections.observableArrayList(orderList);
+            orderTableItemId.setCellValueFactory(new PropertyValueFactory<>("ItemId"));
+            orderTableItemName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
+            orderTableItemType.setCellValueFactory(new PropertyValueFactory<>("ItemType"));
+            orderTableItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
+            orderTableItemQuantity.setCellValueFactory(new PropertyValueFactory<>("ItemQuantity"));
+            orderTable.setItems(order);
+            ordertotal = 0;
+            for (int i = 0; i < orderList.size(); i++) {
+                ordertotal += orderList.get(i).getItemPrice();
+            }
+            totalText.setText("Total: " + Integer.toString(ordertotal) + "$");
+            orderTable.refresh();
+        } else if (!(toGoToggle.isSelected())) {
+            for (TakingOrder item : orderList) {
+                ResultSet getitemprice = Database.getData(String.format("SELECT PriceInside FROM full_menu WHERE ItemId = %d;", item.getItemId()));
+                item.setItemPrice(getitemprice.getInt(1));
+                getitemprice.close();
+            }
+            ObservableList<TakingOrder> order = FXCollections.observableArrayList(orderList);
+            orderTableItemId.setCellValueFactory(new PropertyValueFactory<>("ItemId"));
+            orderTableItemName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
+            orderTableItemType.setCellValueFactory(new PropertyValueFactory<>("ItemType"));
+            orderTableItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
+            orderTableItemQuantity.setCellValueFactory(new PropertyValueFactory<>("ItemQuantity"));
+            orderTable.setItems(order);
+            ordertotal = 0;
+            for (int i = 0; i < orderList.size(); i++) {
+                ordertotal += orderList.get(i).getItemPrice();
+            }
+            totalText.setText("Total: " + Integer.toString(ordertotal) + "$");
+            orderTable.refresh();
+        }
+    }
+
+    public void getDetails(ActionEvent event) throws SQLException {
+        int orderid = Integer.parseInt(orderId.getText());
+        String query = String.format("SELECT OrderDetails FROM orders WHERE OrderId = %d", orderid);
+        ResultSet orderdetailsset = Database.getData(query);
+        String orderdetails = orderdetailsset.getString(1);
+        orderdetailsset.close();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, orderdetails, ButtonType.CLOSE);
+        alert.show();
+    }
+
+    public void acceptPayment(ActionEvent event) throws SQLException {
+        int orderid = Integer.parseInt(orderId.getText());
+        if (paymentOption.getValue() == "Credit card") {
+            if (creditCardField.getText().length() == 16) {
+                String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+                        orderid, paymentOption.getValue());
+                String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+                Database.inputData(query);
+                Database.inputData(query1);
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+                alert.show();
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter valid credit card information.", ButtonType.CLOSE);
+                alert.show();
+            }
+        }else if (paymentOption.getValue() == "Cash") {
+            String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+                    orderid, paymentOption.getValue());
+            String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+            Database.inputData(query);
+            Database.inputData(query1);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+            alert.show();
+        }else if (paymentOption.getValue() == "PayPal") {
+            String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+                    orderid, paymentOption.getValue());
+            String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+            Database.inputData(query);
+            Database.inputData(query1);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+            alert.show();
+        } else if (paymentOption.getValue() == null) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please choose a payment option.", ButtonType.CLOSE);
+            alert.show();
+        }
+        {
+            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
+            ArrayList<Order> items = new ArrayList<>();
+            while (data.next()) {
+                Order item = new Order();
+                item.setOrderId(data.getInt(1));
+                item.setOrderPaymentStatus(data.getString(2));
+                items.add(item);
+            }
+            data.close();
+            items.sort(Comparator.comparing(Order :: getOrderId).reversed());
+            ObservableList<Order> orders = FXCollections.observableArrayList(items);
+            paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
+            paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
+            paymentTable.setItems(orders);
+        }
+    }
+
+    public void setBaristaId(int baristaId) {
+        this.baristaId = baristaId;
+    }
 }
 
