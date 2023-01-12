@@ -3,6 +3,7 @@ package management;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -20,6 +21,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Objects;
+import java.util.Optional;
 
 public class BaristaBoardController {
     @FXML
@@ -400,6 +402,13 @@ public class BaristaBoardController {
     public void addToOrder(ActionEvent event) throws SQLException {
         TakingOrder item = new TakingOrder();
         int itemid = Integer.parseInt(itemId.getText());
+            for (TakingOrder itemorder : orderList) {
+                if (itemorder.getItemId() == itemid) {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "This item is already in the order.", ButtonType.CLOSE);
+                    alert.show();
+                    throw new SQLException("'The item is already in the order' - prevention of incorrect db input.");
+                }
+            }
         item.setItemId(itemid);
         ResultSet getitemname = Database.getData(String.format("SELECT ItemName FROM full_menu WHERE ItemId = %d;", itemid));
         item.setItemName(getitemname.getString(1));
@@ -432,11 +441,11 @@ public class BaristaBoardController {
             orderTableItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
             orderTableItemQuantity.setCellValueFactory(new PropertyValueFactory<>("ItemQuantity"));
             orderTable.setItems(order);
-            int total = 0;
+            ordertotal = 0;
             for (int i = 0; i < orderList.size(); i++) {
-                total += orderList.get(i).getItemPrice();
+                ordertotal += orderList.get(i).getItemPrice();
             }
-            totalText.setText("Total: " + Integer.toString(total) + "$");
+            totalText.setText("Total: " + Integer.toString(ordertotal) + "$");
         }
     }
 
@@ -487,6 +496,23 @@ public class BaristaBoardController {
         resultingorder.setOrderTimestamp(null);
         for (TakingOrder item: orderList) {
             orderdetails += item.getItemName() + " x" + item.getItemQuantity() + ",";
+            if (item.getItemId() >= 100 && item.getItemId() < 200) {
+                String query = String.format("UPDATE drinkscoffee SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
+                        item.getItemQuantity(), item.getItemId());
+                Database.inputData(query);
+            }else if (item.getItemId() >= 200 && item.getItemId() < 300) {
+                String query = String.format("UPDATE drinkstea SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
+                        item.getItemQuantity(), item.getItemId());
+                Database.inputData(query);
+            }else if (item.getItemId() >= 300 && item.getItemId() < 400) {
+                String query = String.format("UPDATE drinksother SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
+                        item.getItemQuantity(), item.getItemId());
+                Database.inputData(query);
+            }else if (item.getItemId() >= 400) {
+                String query = String.format("UPDATE food SET TotalLeft = TotalLeft - %d WHERE FoodId = %d",
+                        item.getItemQuantity(), item.getItemId());
+                Database.inputData(query);
+            }
         }
         String orderdetailsf = orderdetails.substring(0, orderdetails.length() - 1) + ".";
         resultingorder.setOrderDetails(orderdetailsf);
@@ -495,23 +521,25 @@ public class BaristaBoardController {
         clientId.setText("");
         itemAmount.setText("1");
         itemId.setText("");
+        totalText.setText("Total: 0$");
         orderTable.getItems().clear();
-        {
-            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
-            ArrayList<Order> items = new ArrayList<>();
-            while (data.next()) {
-                Order item = new Order();
-                item.setOrderId(data.getInt(1));
-                item.setOrderPaymentStatus(data.getString(2));
-                items.add(item);
-            }
-            data.close();
-            items.sort(Comparator.comparing(Order :: getOrderId).reversed());
-            ObservableList<Order> orders = FXCollections.observableArrayList(items);
-            paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
-            paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
-            paymentTable.setItems(orders);
-        }
+        populateTables();
+//        {
+//            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
+//            ArrayList<Order> items = new ArrayList<>();
+//            while (data.next()) {
+//                Order item = new Order();
+//                item.setOrderId(data.getInt(1));
+//                item.setOrderPaymentStatus(data.getString(2));
+//                items.add(item);
+//            }
+//            data.close();
+//            items.sort(Comparator.comparing(Order :: getOrderId).reversed());
+//            ObservableList<Order> orders = FXCollections.observableArrayList(items);
+//            paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
+//            paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
+//            paymentTable.setItems(orders);
+//        }
     }
 
     public void toGoToggleSwitch(ActionEvent event) throws SQLException {
@@ -567,56 +595,121 @@ public class BaristaBoardController {
     }
 
     public void acceptPayment(ActionEvent event) throws SQLException {
-        int orderid = Integer.parseInt(orderId.getText());
-        if (paymentOption.getValue() == "Credit card") {
-            if (creditCardField.getText().length() == 16) {
-                String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
-                        orderid, paymentOption.getValue());
-                String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
-                Database.inputData(query);
-                Database.inputData(query1);
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
-                alert.show();
-            } else {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter valid credit card information.", ButtonType.CLOSE);
+            int orderid = Integer.parseInt(orderId.getText());
+            if (paymentOption.getValue() == "Credit card") {
+                if (creditCardField.getText().length() == 16) {
+                    String querytotal = String.format("SELECT Total from orders WHERE OrderId = %d", orderid);
+                    ResultSet totalrs = Database.getData(querytotal);
+                    float total = totalrs.getInt(1);
+                    totalrs.close();
+                    String topay = String.format("To pay: %.1f$", total);
+                    Alert alerttotal = new Alert(Alert.AlertType.CONFIRMATION, topay);
+                    Optional<ButtonType> result = alerttotal.showAndWait();
+                    if (result.get() == ButtonType.OK) {
+                        try {
+                            String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+                                    orderid, paymentOption.getValue());
+                            String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+                            Database.inputData(query);
+                            Database.inputData(query1);
+                        } catch (SQLException sqlException) {
+                            Alert alert = new Alert(Alert.AlertType.ERROR, "This order has already been payed.", ButtonType.CLOSE);
+                            alert.showAndWait();
+                            throw sqlException;
+                        }
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+                        alert.show();
+                    } else if (result.get() == ButtonType.CANCEL) {
+                        throw new SQLException("The user refused to pay.");
+                    }
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR, "Please enter valid credit card information.", ButtonType.CLOSE);
+                    alert.show();
+                }
+            } else if (paymentOption.getValue() == "Cash") {
+                String querytotal = String.format("SELECT Total from orders WHERE OrderId = %d", orderid);
+                ResultSet totalrs = Database.getData(querytotal);
+                float total = totalrs.getInt(1);
+                totalrs.close();
+                String topay = String.format("To pay: %.1f$", total);
+                Alert alerttotal = new Alert(Alert.AlertType.CONFIRMATION, topay);
+                Optional<ButtonType> result = alerttotal.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    try {
+                        String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+                                orderid, paymentOption.getValue());
+                        String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+                        Database.inputData(query);
+                        Database.inputData(query1);
+                    } catch (SQLException sqlException) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "This order has already been payed.", ButtonType.CLOSE);
+                        alert.showAndWait();
+                        throw sqlException;
+                    }
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+                    alert.show();
+                } else if (result.get() == ButtonType.CANCEL) {
+                    throw new SQLException("The user refused to pay.");
+                }
+//                String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+//                        orderid, paymentOption.getValue());
+//                String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+//                Database.inputData(query);
+//                Database.inputData(query1);
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+//                alert.show();
+            } else if (paymentOption.getValue() == "PayPal") {
+                String querytotal = String.format("SELECT Total from orders WHERE OrderId = %d", orderid);
+                ResultSet totalrs = Database.getData(querytotal);
+                float total = totalrs.getInt(1);
+                totalrs.close();
+                String topay = String.format("To pay: %.1f$", total);
+                Alert alerttotal = new Alert(Alert.AlertType.CONFIRMATION, topay);
+                Optional<ButtonType> result = alerttotal.showAndWait();
+                if (result.get() == ButtonType.OK) {
+                    try {
+                        String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+                                orderid, paymentOption.getValue());
+                        String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+                        Database.inputData(query);
+                        Database.inputData(query1);
+                    } catch (SQLException sqlException) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR, "This order has already been payed.", ButtonType.CLOSE);
+                        alert.showAndWait();
+                        throw sqlException;
+                    }
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+                    alert.show();
+                } else if (result.get() == ButtonType.CANCEL) {
+                    throw new SQLException("The user refused to pay.");
+                }
+//                String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
+//                        orderid, paymentOption.getValue());
+//                String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
+//                Database.inputData(query);
+//                Database.inputData(query1);
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
+//                alert.show();
+            } else if (paymentOption.getValue() == null) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Please choose a payment option.", ButtonType.CLOSE);
                 alert.show();
             }
-        }else if (paymentOption.getValue() == "Cash") {
-            String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
-                    orderid, paymentOption.getValue());
-            String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
-            Database.inputData(query);
-            Database.inputData(query1);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
-            alert.show();
-        }else if (paymentOption.getValue() == "PayPal") {
-            String query = String.format("INSERT INTO payment (OrderId, PaymentType) VALUES (%d, '%s');",
-                    orderid, paymentOption.getValue());
-            String query1 = String.format("UPDATE orders SET PaymentStatus = 'Payed' WHERE OrderId = %d;", orderid);
-            Database.inputData(query);
-            Database.inputData(query1);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Payment successful!", ButtonType.OK);
-            alert.show();
-        } else if (paymentOption.getValue() == null) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please choose a payment option.", ButtonType.CLOSE);
-            alert.show();
-        }
-        {
-            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
-            ArrayList<Order> items = new ArrayList<>();
-            while (data.next()) {
-                Order item = new Order();
-                item.setOrderId(data.getInt(1));
-                item.setOrderPaymentStatus(data.getString(2));
-                items.add(item);
+            {
+                ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
+                ArrayList<Order> items = new ArrayList<>();
+                while (data.next()) {
+                    Order item = new Order();
+                    item.setOrderId(data.getInt(1));
+                    item.setOrderPaymentStatus(data.getString(2));
+                    items.add(item);
+                }
+                data.close();
+                items.sort(Comparator.comparing(Order::getOrderId).reversed());
+                ObservableList<Order> orders = FXCollections.observableArrayList(items);
+                paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
+                paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
+                paymentTable.setItems(orders);
             }
-            data.close();
-            items.sort(Comparator.comparing(Order :: getOrderId).reversed());
-            ObservableList<Order> orders = FXCollections.observableArrayList(items);
-            paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
-            paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
-            paymentTable.setItems(orders);
-        }
     }
 
     public void setBaristaId(int baristaId) {

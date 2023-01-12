@@ -47,7 +47,7 @@ public class Order {
             Database.inputData(query);
         } else {
             String query = String.format("INSERT INTO orders (ClientId, BaristaId, OrderType, Total, PaymentStatus, OrderDetails) VALUES (%d, %d, '%s', %f, '%s','%s');",
-                    this.ClientId.getValue(), this.BaristaId.getValue(), this.OrderType.getValue(), this.OrderTotal.getValue(), this.OrderPaymentStatus.getValue(), this.OrderDetails);
+                    this.ClientId.getValue(), this.BaristaId.getValue(), this.OrderType.getValue(), this.OrderTotal.getValue(), this.OrderPaymentStatus.getValue(), this.OrderDetails.getValue());
             Database.inputData(query);
         }
     }
