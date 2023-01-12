@@ -74,6 +74,13 @@ public class LoginController {
                     baristaBoardController.setNameLabel(username);
                     baristaBoardController.setCurrentDate();
                     baristaBoardController.populateTables();
+                    baristaBoardController.populateComboBoxes();
+                    String baristaIdQuery = String.format("SELECT AccessId FROM access WHERE Login = '%s' AND Password = '%s';",
+                            username, password);
+                    ResultSet getbaristaid = Database.getData(baristaIdQuery);
+                    int baristaId = getbaristaid.getInt(1);
+                    baristaBoardController.setBaristaId(baristaId);
+                    getbaristaid.close();
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
@@ -95,7 +102,7 @@ public class LoginController {
                 usernameField.clear();
                 passwordField.clear();
                 }
-//            users.first();
+                users.close();
             }
     public void changeSceneToClient(ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ClientBoard.fxml"));

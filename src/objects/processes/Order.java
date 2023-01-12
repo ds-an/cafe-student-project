@@ -3,6 +3,9 @@ package objects.processes;
 import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import utility.Database;
+
+import java.sql.SQLException;
 
 public class Order {
     private SimpleIntegerProperty OrderId;
@@ -35,6 +38,18 @@ public class Order {
         this.OrderTotal = new SimpleFloatProperty(orderTotal);
         this.OrderPaymentStatus = new SimpleStringProperty(orderPaymentStatus);
         this.OrderDetails = new SimpleStringProperty(orderDetails);
+    }
+
+    public void insertOrder() throws SQLException {
+        if (this.ClientId.getValue() == 0) {
+            String query = String.format("INSERT INTO orders (BaristaId, OrderType, Total, PaymentStatus, OrderDetails) VALUES (%d, '%s', %f, '%s','%s');",
+                    this.BaristaId.getValue(), this.OrderType.getValue(), this.OrderTotal.getValue(), this.OrderPaymentStatus.getValue(), this.OrderDetails.getValue());
+            Database.inputData(query);
+        } else {
+            String query = String.format("INSERT INTO orders (ClientId, BaristaId, OrderType, Total, PaymentStatus, OrderDetails) VALUES (%d, %d, '%s', %f, '%s','%s');",
+                    this.ClientId.getValue(), this.BaristaId.getValue(), this.OrderType.getValue(), this.OrderTotal.getValue(), this.OrderPaymentStatus.getValue(), this.OrderDetails.getValue());
+            Database.inputData(query);
+        }
     }
 
     public int getOrderId() {
