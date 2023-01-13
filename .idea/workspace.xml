@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Major improvents in the barista dashboard, it's almost done.">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0e2b1e8d-c377-4116-a885-0320e3412b42.xml" afterDir="false" />
+    <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Major improvents in the barista dashboard, it's done. Maybe some tweaks later.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/BaristaBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/processes/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/processes/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/objects/users/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Client.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,8 +155,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Database" />
         <item itemvalue="Application.BaristaBoardController" />
+        <item itemvalue="Application.Database" />
         <item itemvalue="Application.Order" />
       </list>
     </recent_temporary>
@@ -201,7 +202,8 @@
       <workItem from="1673272095189" duration="19424000" />
       <workItem from="1673370161344" duration="8814000" />
       <workItem from="1673423062198" duration="34373000" />
-      <workItem from="1673509378621" duration="15380000" />
+      <workItem from="1673509378621" duration="26978000" />
+      <workItem from="1673595900823" duration="8632000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -287,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673471603727</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Major improvents in the barista dashboard, it's done. Maybe some tweaks later.">
+      <created>1673530695053</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1673530695053</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -332,281 +341,12 @@
     <MESSAGE value="Some buttons are working and tables are filled in the manager's dashboard." />
     <MESSAGE value="Big improvements on the barista dashboard: all tables populated, can now add items to order." />
     <MESSAGE value="Major improvents in the barista dashboard, it's almost done." />
-    <option name="LAST_COMMIT_MESSAGE" value="Major improvents in the barista dashboard, it's almost done." />
+    <MESSAGE value="Major improvents in the barista dashboard, it's done. Maybe some tweaks later." />
+    <option name="LAST_COMMIT_MESSAGE" value="Major improvents in the barista dashboard, it's done. Maybe some tweaks later." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/utility/DataPasser.java</url>
-          <line>5</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/utility/DataPasser.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>480</line>
-          <option name="timeStamp" value="77" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>481</line>
-          <option name="timeStamp" value="78" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>485</line>
-          <option name="timeStamp" value="79" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>487</line>
-          <option name="timeStamp" value="81" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>488</line>
-          <option name="timeStamp" value="82" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>489</line>
-          <option name="timeStamp" value="83" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>495</line>
-          <option name="timeStamp" value="84" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>517</line>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>496</line>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>497</line>
-          <option name="timeStamp" value="87" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>518</line>
-          <option name="timeStamp" value="88" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/objects/processes/Order.java</url>
-          <line>48</line>
-          <option name="timeStamp" value="93" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/objects/processes/Order.java</url>
-          <line>49</line>
-          <option name="timeStamp" value="95" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>482</line>
-          <option name="timeStamp" value="98" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>483</line>
-          <option name="timeStamp" value="99" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/objects/processes/Order.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="100" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/objects/processes/Order.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="101" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/objects/processes/Order.java</url>
-          <line>43</line>
-          <option name="timeStamp" value="102" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/objects/processes/Order.java</url>
-          <line>46</line>
-          <option name="timeStamp" value="103" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>516</line>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>519</line>
-          <option name="timeStamp" value="105" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>520</line>
-          <option name="timeStamp" value="106" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>522</line>
-          <option name="timeStamp" value="108" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>524</line>
-          <option name="timeStamp" value="109" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>521</line>
-          <option name="timeStamp" value="110" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>527</line>
-          <option name="timeStamp" value="111" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>528</line>
-          <option name="timeStamp" value="112" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>529</line>
-          <option name="timeStamp" value="113" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>530</line>
-          <option name="timeStamp" value="114" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>531</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>532</line>
-          <option name="timeStamp" value="116" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>533</line>
-          <option name="timeStamp" value="117" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/objects/processes/Order.java</url>
-          <line>50</line>
-          <option name="timeStamp" value="118" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>490</line>
-          <option name="timeStamp" value="119" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>491</line>
-          <option name="timeStamp" value="120" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>493</line>
-          <option name="timeStamp" value="122" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>492</line>
-          <option name="timeStamp" value="123" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>498</line>
-          <option name="timeStamp" value="126" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>499</line>
-          <option name="timeStamp" value="127" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>500</line>
-          <option name="timeStamp" value="128" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>501</line>
-          <option name="timeStamp" value="129" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>502</line>
-          <option name="timeStamp" value="130" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>503</line>
-          <option name="timeStamp" value="131" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>504</line>
-          <option name="timeStamp" value="132" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>505</line>
-          <option name="timeStamp" value="133" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>506</line>
-          <option name="timeStamp" value="134" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>507</line>
-          <option name="timeStamp" value="135" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>509</line>
-          <option name="timeStamp" value="138" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>510</line>
-          <option name="timeStamp" value="139" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>511</line>
-          <option name="timeStamp" value="140" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>512</line>
-          <option name="timeStamp" value="141" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/management/BaristaBoardController.java</url>
-          <line>513</line>
-          <option name="timeStamp" value="143" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/utility/DataPasser.java</url>
           <line>3</line>
