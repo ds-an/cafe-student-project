@@ -416,19 +416,41 @@ public class BaristaBoardController {
         ResultSet getitemtype = Database.getData(String.format("SELECT ItemType FROM full_menu WHERE ItemId = %d;", itemid));
         item.setItemType(getitemtype.getString(1));
         getitemtype.close();
+        float itemactualprice = 0;
         if (toGoToggle.isSelected()) {
             ResultSet getitemprice = Database.getData(String.format("SELECT PriceOutside FROM full_menu WHERE ItemId = %d;", itemid));
             item.setItemPrice(getitemprice.getInt(1));
+            itemactualprice = getitemprice.getInt(1);
             getitemprice.close();
         }else {
             ResultSet getitemprice = Database.getData(String.format("SELECT PriceInside FROM full_menu WHERE ItemId = %d;", itemid));
             item.setItemPrice(getitemprice.getInt(1));
+            itemactualprice = getitemprice.getInt(1);
             getitemprice.close();
         }
         item.setItemQuantity(Integer.parseInt(itemAmount.getText()));
         ResultSet getitemtotalleftrs = Database.getData(String.format("SELECT TotalLeft FROM full_menu WHERE ItemId = %d;", itemid));
         int itemtotalleft = getitemtotalleftrs.getInt(1);
         getitemtotalleftrs.close();
+        if (!(clientId.getText().isEmpty()) && (item.getItemId() >= 100 && item.getItemId() < 200)) {
+            int clientid = Integer.parseInt(clientId.getText());
+            String query = String.format("SELECT CoffeeOrders FROM clients WHERE ClientId = %d;", clientid);
+            ResultSet clientcupsrs = Database.getData(query);
+            int clientcups = clientcupsrs.getInt(1);
+            clientcupsrs.close();
+            int itemquant = Integer.parseInt(itemAmount.getText());
+            for (int i = 0; i < itemquant; i++) {
+                clientcups++;
+                if (clientcups % 10 == 0) {
+                    item.setItemPrice((item.getItemPrice() * item.getItemQuantity()) - itemactualprice);
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION, "The client gets one cup of coffee for free!");
+                    alert.showAndWait();
+                }
+            }
+            String query1 = String.format("UPDATE clients SET CoffeeOrders = %d WHERE ClientId = %d",
+                    clientcups, clientid);
+            Database.inputData(query1);
+        }
         if (itemtotalleft - item.getItemQuantity() < 0) {
             Alert alert = new Alert(Alert.AlertType.ERROR, "This item is out of stock.", ButtonType.CLOSE);
             alert.show();
@@ -463,6 +485,18 @@ public class BaristaBoardController {
     }
 
     public void removeFromOrder(ActionEvent event) throws SQLException {
+        if (!(clientId.getText().isEmpty()) && (orderList.get(orderList.size() - 1).getItemId() >= 100 &&
+                orderList.get(orderList.size() - 1).getItemId() < 200)) {
+            int clientid = Integer.parseInt(clientId.getText());
+            String query = String.format("SELECT CoffeeOrders FROM clients WHERE ClientId = %d;", clientid);
+            ResultSet clientcupsrs = Database.getData(query);
+            int clientcups = clientcupsrs.getInt(1);
+            clientcupsrs.close();
+            int itemquant = orderList.get(orderList.size() - 1).getItemQuantity();
+            String query1 = String.format("UPDATE clients SET CoffeeOrders = %d WHERE ClientId = %d",
+                    clientcups - itemquant, clientid);
+            Database.inputData(query1);
+        }
         orderList.remove(orderList.size() - 1);
         ObservableList<TakingOrder> order = FXCollections.observableArrayList(orderList);
         orderTableItemId.setCellValueFactory(new PropertyValueFactory<>("ItemId"));
@@ -471,6 +505,7 @@ public class BaristaBoardController {
         orderTableItemPrice.setCellValueFactory(new PropertyValueFactory<>("ItemPrice"));
         orderTableItemQuantity.setCellValueFactory(new PropertyValueFactory<>("ItemQuantity"));
         orderTable.setItems(order);
+        ordertotal = 0;
         for (int i = 0; i < orderList.size(); i++) {
             ordertotal += orderList.get(i).getItemPrice();
         }
@@ -483,7 +518,24 @@ public class BaristaBoardController {
         if (clientId.getText().isEmpty()) {
             resultingorder.setClientId(0);
         } else {
-            resultingorder.setClientId(Integer.parseInt(clientId.getText()));
+            int clientid = Integer.parseInt(clientId.getText());
+            resultingorder.setClientId(clientid);
+            //
+//            String query = String.format("SELECT CoffeeOrders FROM clients WHERE ClientId = %d;", clientid);
+//            ResultSet clientcupsrs = Database.getData(query);
+//            int clientcups = clientcupsrs.getInt(1);
+//            clientcupsrs.close();
+//            int countercoffee = 0;
+//            for (TakingOrder item : orderList) {
+//                if ((item.getItemId() >= 100 && item.getItemId() < 200)) {
+//                    countercoffee += item.getItemQuantity();
+//                }
+//            }
+//            for (int i = 0; i < countercoffee; i++) {
+//                clientcups++;
+//                if (clientcups % 10 == 0)
+//
+//            }
         }
         resultingorder.setBaristaId(baristaId);
         resultingorder.setOrderTotal(ordertotal);
@@ -714,6 +766,11 @@ public class BaristaBoardController {
 
     public void setBaristaId(int baristaId) {
         this.baristaId = baristaId;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(69 / 10);
+        System.out.println(1);
     }
 }
 

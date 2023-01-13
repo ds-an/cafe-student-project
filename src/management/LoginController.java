@@ -7,10 +7,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import objects.users.Client;
 import utility.Database;
 
 import java.io.IOException;
@@ -25,10 +28,34 @@ public class LoginController {
     @FXML
     private Button ordernowbutton;
     @FXML
+    private Button createAnAccount;
+    @FXML
     private TextField usernameField;
     @FXML
     private PasswordField passwordField;
     private ResultSet users;
+    @FXML
+    private AnchorPane createAnAccountPane;
+    @FXML
+    private AnchorPane mainLoginScreenPane;
+    @FXML
+    private TextField passwordField2;
+    @FXML
+    private TextField phoneNumberField;
+    @FXML
+    private Button registerButton;
+    @FXML
+    private TextField emailField;
+
+    @FXML
+    private TextField firstNameField;
+
+    @FXML
+    private TextField lastNameField;
+
+    @FXML
+    private TextField loginField;
+
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -113,6 +140,45 @@ public class LoginController {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void switchToCreateAnAccount() {
+        createAnAccountPane.setVisible(true);
+        mainLoginScreenPane.setVisible(false);
+    }
+
+    public void switchToMainLoginScreen() {
+        createAnAccountPane.setVisible(false);
+        mainLoginScreenPane.setVisible(true);
+    }
+
+    public void registerClient(ActionEvent event) throws SQLException {
+        if (firstNameField.getText().isEmpty() || loginField.getText().isEmpty() ||
+        passwordField2.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please provide your first name, login and password. " +
+                    "Everything else is optional!");
+            alert.showAndWait();
+            throw new SQLException("Some of the necessary info was not provided by the user.");
+        }
+        Client client = new Client();
+        client.setFirstName(firstNameField.getText());
+        client.setLastName(lastNameField.getText());
+        client.setPhoneNumber(phoneNumberField.getText());
+        client.setEmail(emailField.getText());
+        client.insertClient();
+        String query = String.format("INSERT INTO access VALUES ((SELECT ClientId from clients WHERE ROWID = last_insert_rowid()), '%s', '%s');",
+                loginField.getText(), passwordField2.getText());
+        Database.inputData(query);
+        String greeting = String.format("%s, thank you for registering at our Coffee Shop!", firstNameField.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, greeting);
+        alert.showAndWait();
+        switchToMainLoginScreen();
+        firstNameField.clear();
+        lastNameField.clear();
+        passwordField2.clear();
+        phoneNumberField.clear();
+        emailField.clear();
+        loginField.clear();
     }
 
 //    public static void main(String[] args) throws SQLException {

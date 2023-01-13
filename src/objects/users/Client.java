@@ -32,18 +32,18 @@ public class Client extends User{
     }
 
     public void insertClient() throws SQLException {
-        String query = String.format("INSERT INTO clients VALUES (%d, '%s', '%s', '%s', '%s', '%d')",
-                super.getId(), super.getFirstName(), super.getLastName(), super.getPhoneNumber(),
-                super.getEmail(), this.CoffeeOrders);
+        String query = String.format("INSERT INTO clients (FirstName, LastName, PhoneNumber, Email, CoffeeOrders) VALUES ('%s', '%s', '%s', '%s', 0)",
+                super.getFirstName(), super.getLastName(), super.getPhoneNumber(),
+                super.getEmail());
         Database.inputData(query);
     }
 
-    public void insertClient(int id, String firstName, String lastName,
-                             String phoneNumber, String email, int coffeeOrders) throws SQLException {
-        String query = String.format("INSERT INTO clients VALUES (%d, '%s', '%s', '%s', '%s', '%d')",
-                id, firstName, lastName, phoneNumber, email, coffeeOrders);
-        Database.inputData(query);
-    }
+//    public void insertClient(int id, String firstName, String lastName,
+//                             String phoneNumber, String email, int coffeeOrders) throws SQLException {
+//        String query = String.format("INSERT INTO clients VALUES (%d, '%s', '%s', '%s', '%s', '%d')",
+//                id, firstName, lastName, phoneNumber, email, coffeeOrders);
+//        Database.inputData(query);
+//    }
 
     public static void main(String[] args) throws SQLException {
         Client client1 = new Client(100);
