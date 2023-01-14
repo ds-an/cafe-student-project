@@ -5,15 +5,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import objects.items.*;
 import objects.processes.Order;
 import objects.processes.TakingOrder;
 import utility.Database;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -246,6 +252,12 @@ public class BaristaBoardController {
 
     private int ordertotal;
 
+    private Stage stage;
+
+    private Scene scene;
+
+    private Parent root;
+
     public void setNameLabel(String username) {
         welcomeText.setText("Welcome, " + username);
     }
@@ -468,6 +480,8 @@ public class BaristaBoardController {
                 ordertotal += orderList.get(i).getItemPrice();
             }
             totalText.setText("Total: " + Integer.toString(ordertotal) + "$");
+            toGoToggle.setDisable(true);
+            clientId.setDisable(true);
         }
     }
 
@@ -547,7 +561,7 @@ public class BaristaBoardController {
         }
         resultingorder.setOrderTimestamp(null);
         for (TakingOrder item: orderList) {
-            orderdetails += item.getItemName() + " x" + item.getItemQuantity() + ",";
+            orderdetails += item.getItemName() + " x" + item.getItemQuantity() + ", ";
             if (item.getItemId() >= 100 && item.getItemId() < 200) {
                 String query = String.format("UPDATE drinkscoffee SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
                         item.getItemQuantity(), item.getItemId());
@@ -576,6 +590,8 @@ public class BaristaBoardController {
         totalText.setText("Total: 0$");
         orderTable.getItems().clear();
         populateTables();
+        toGoToggle.setDisable(false);
+        clientId.setDisable(false);
 //        {
 //            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
 //            ArrayList<Order> items = new ArrayList<>();
@@ -764,13 +780,22 @@ public class BaristaBoardController {
             }
     }
 
+    public void logOut(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void setBaristaId(int baristaId) {
         this.baristaId = baristaId;
     }
 
-    public static void main(String[] args) {
-        System.out.println(69 / 10);
-        System.out.println(1);
-    }
+//    public static void main(String[] args) {
+//        System.out.println(69 / 10);
+//        System.out.println(1);
+//    }
 }
 

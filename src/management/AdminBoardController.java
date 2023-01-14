@@ -8,26 +8,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import objects.items.*;
 import objects.processes.Order;
-import objects.items.CoffeeDrink;
-import objects.items.Food;
-import objects.items.OtherDrink;
-import objects.items.TeaDrink;
 import objects.processes.Payment;
 import objects.users.Barista;
 import utility.Database;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -35,6 +28,33 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AdminBoardController {
+
+    @FXML
+    private TableView<FullMenuItem> fullMenuTable;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTableId;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTableMilkType;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTableName;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTablePriceIns;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTablePriceOut;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTableTemp;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTableType;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuTotalLeft;
 
     @FXML
     private Button addItemButton;
@@ -55,10 +75,16 @@ public class AdminBoardController {
     private TextField coffeeName;
 
     @FXML
+    private TextField orderIdField;
+
+    @FXML
     private TextField coffeePriceIns;
 
     @FXML
     private TextField coffeePriceOut;
+
+    @FXML
+    private TextField itemIdField;
 
     @FXML
     private TableView<CoffeeDrink> coffeeTable;
@@ -361,7 +387,28 @@ public class AdminBoardController {
     private Button updateItemButton;
 
     @FXML
+    private Text todaysIncomeText;
+
+    @FXML
+    private Text totalncomeText;
+
+    @FXML
+    private Text numberOfOrdersText;
+
+    @FXML
     private Label welcomeText;
+
+    @FXML
+    private TextArea coffeeDescription;
+
+    @FXML
+    private TextArea drinkDescription;
+
+    @FXML
+    private TextArea teaDescription;
+
+    @FXML
+    private TextArea foodDescription;
 
     private Stage stage;
 
@@ -449,6 +496,33 @@ public class AdminBoardController {
     }
 
     public void populateTables() throws SQLException {
+        {
+            ResultSet data = Database.getData("SELECT * FROM full_menu;");
+            ArrayList<FullMenuItem> items = new ArrayList<>();
+            while (data.next()) {
+                FullMenuItem item = new FullMenuItem();
+                item.setId(data.getInt(1));
+                item.setItemName(data.getString(2));
+                item.setItemType(data.getString(3));
+                item.setMilkType(data.getString(4));
+                item.setTemperature(data.getString(5));
+                item.setPriceInside(data.getFloat(6));
+                item.setPriceOutside(data.getFloat(7));
+                item.setTotalLeft(data.getInt(8));
+                items.add(item);
+            }
+            data.close();
+            ObservableList<FullMenuItem> fullMenuItems = FXCollections.observableArrayList(items);
+            fullMenuTableId.setCellValueFactory(new PropertyValueFactory<>("id"));
+            fullMenuTableName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
+            fullMenuTableType.setCellValueFactory(new PropertyValueFactory<>("ItemType"));
+            fullMenuTableMilkType.setCellValueFactory(new PropertyValueFactory<>("MilkType"));
+            fullMenuTableTemp.setCellValueFactory(new PropertyValueFactory<>("Temperature"));
+            fullMenuTablePriceIns.setCellValueFactory(new PropertyValueFactory<>("PriceInside"));
+            fullMenuTablePriceOut.setCellValueFactory(new PropertyValueFactory<>("PriceOutside"));
+            fullMenuTotalLeft.setCellValueFactory(new PropertyValueFactory<>("TotalLeft"));
+            fullMenuTable.setItems(fullMenuItems);
+        }
         {
             ResultSet data = Database.getData("SELECT * FROM drinkscoffee");
             ArrayList<CoffeeDrink> items = new ArrayList<>();
@@ -633,5 +707,189 @@ public class AdminBoardController {
             paneChoiceFood.setVisible(true);
         }
     }
+
+    public void populateBasicInfo() throws SQLException {
+        {
+            String query = "SELECT COUNT(PaymentId) FROM payment;";
+            ResultSet numberofordersrs = Database.getData(query);
+            int numberoforders = numberofordersrs.getInt(1);
+            numberofordersrs.close();
+            numberOfOrdersText.setText(Integer.toString(numberoforders));
+        }
+        {
+            float todaysincome = 0;
+            String query = "SELECT sum(Total) from orders WHERE date(Timestamp) = date(current_date) AND PaymentStatus = 'Payed';";
+            ResultSet todaysincomers = Database.getData(query);
+            todaysincome = todaysincomers.getInt(1);
+            todaysincomers.close();
+            todaysIncomeText.setText(Float.toString(todaysincome));
+        }
+        {
+            float totalincome = 0;
+            String query = "SELECT sum(Total) from orders WHERE PaymentStatus = 'Payed';";
+            ResultSet totalincomers = Database.getData(query);
+            totalincome = totalincomers.getInt(1);
+            totalincomers.close();
+            totalncomeText.setText(Float.toString(totalincome));
+        }
+    }
+
+    public void getDetailsOrder(ActionEvent event) throws SQLException {
+        int orderid = Integer.parseInt(orderIdField.getText());
+        String query = String.format("SELECT OrderDetails FROM orders WHERE OrderId = %d", orderid);
+        ResultSet orderdetailsset = Database.getData(query);
+        String orderdetails = orderdetailsset.getString(1);
+        orderdetailsset.close();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, orderdetails, ButtonType.CLOSE);
+        alert.show();
+    }
+
+    public void getDetailsPayment(ActionEvent event) throws SQLException {
+        String query1 = String.format("SELECT OrderID FROM payment WHERE PaymentId = %d;", Integer.parseInt(paymentID.getText()));
+        ResultSet irderidrs = Database.getData(query1);
+        int orderid = irderidrs.getInt(1);
+        irderidrs.close();
+        String query2 = String.format("SELECT OrderDetails, Total FROM orders WHERE OrderId = 1439 AND PaymentStatus = 'Payed';", orderid);
+        ResultSet orderdetailsset2 = Database.getData(query2);
+        orderdetailsset2.next();
+        String orderdetailsstart = orderdetailsset2.getString(1);
+        String orderdetails = orderdetailsstart.substring(14);
+        int paymenttotal = orderdetailsset2.getInt(2);
+        String paymentdetails = String.format("The customer payed %d$ for the order of %s", paymenttotal, orderdetails);
+        orderdetailsset2.close();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, paymentdetails, ButtonType.CLOSE);
+        alert.show();
+    }
+
+    public void clearItemFields() {
+        coffeeName.clear();
+        coffeePriceIns.clear();
+        coffeePriceOut.clear();
+        teaName.clear();
+        teaPriceIns.clear();
+        teaPriceOut.clear();
+        drinkName.clear();
+        drinkPriceIns.clear();
+        drinkPriceOut.clear();
+        foodName.clear();
+        foodPriceIns.clear();
+        foodPriceOut.clear();
+    }
+
+    public void removeItem() throws SQLException {
+        int itemid = Integer.parseInt(itemIdField.getText());
+        if (itemid >= 100 && itemid < 200) {
+            String query = String.format("DELETE FROM drinkscoffee WHERE DrinkId = %d",
+                     itemid);
+            Database.inputData(query);
+        }else if (itemid >= 200 && itemid < 300) {
+            String query = String.format("DELETE FROM drinkstea WHERE DrinkId = %d",
+                     itemid);
+            Database.inputData(query);
+        }else if (itemid >= 300 && itemid < 400) {
+            String query = String.format("DELETE FROM drinksother WHERE DrinkId = %d",
+                     itemid);
+            Database.inputData(query);
+        }else if (itemid >= 400) {
+            String query = String.format("DELETE FROM food WHERE FoodId = %d",
+                     itemid);
+            Database.inputData(query);
+        }
+        populateTables();
+    }
+
+    public void addItem() throws SQLException {
+        if (itemType.getValue() == "Coffee") {
+            CoffeeDrink drink = new CoffeeDrink();
+            drink.setItemName(coffeeName.getText());
+            drink.setItemType(coffeeType.getValue().toString());
+            drink.setMilkType(coffeeMilkType.getValue().toString());
+            drink.setTemperature(coffeeTemp.getValue().toString());
+            drink.setPriceInside(Integer.parseInt(coffeePriceIns.getText()));
+            drink.setPriceOutside(Integer.parseInt(coffeePriceOut.getText()));
+            drink.setTotalLeft(100);
+            drink.insertItem();
+            clearItemFields();
+            populateTables();
+        }else if(itemType.getValue() == "Tea") {
+            TeaDrink drink = new TeaDrink();
+            drink.setItemName(teaName.getText());
+            drink.setItemType(teaType.getValue().toString());
+            drink.setMilkType(teaMilkType.getValue().toString());
+            drink.setTemperature(teaTemp.getValue().toString());
+            drink.setPriceInside(Integer.parseInt(teaPriceIns.getText()));
+            drink.setPriceOutside(Integer.parseInt(teaPriceOut.getText()));
+            drink.setTotalLeft(100);
+            drink.insertItem();
+            clearItemFields();
+            populateTables();
+        }else if(itemType.getValue() == "Drinks") {
+            OtherDrink drink = new OtherDrink();
+            drink.setItemName(drinkName.getText());
+            drink.setItemType(null);
+            drink.setPriceInside(Integer.parseInt(drinkPriceIns.getText()));
+            drink.setPriceOutside(Integer.parseInt(drinkPriceOut.getText()));
+            drink.setTotalLeft(100);
+            drink.insertItem();
+            clearItemFields();
+            populateTables();
+        }else if(itemType.getValue() == "Food") {
+            Food food = new Food();
+            food.setItemName(foodName.getText());
+            food.setItemType(foodType.getValue().toString());
+            food.setPriceInside(Integer.parseInt(foodPriceIns.getText()));
+            food.setPriceOutside(Integer.parseInt(foodPriceOut.getText()));
+            food.setTotalLeft(100);
+            food.insertItem();
+            clearItemFields();
+            populateTables();
+        }
+    }
+
+    /*
+    public static void main(String[] args) throws SQLException {
+        int orderid = 1436;
+        String query = String.format("SELECT OrderDetails, Total FROM orders WHERE OrderId = %d AND PaymentStatus = 'Payed';", orderid);
+        ResultSet orderdetailsset = Database.getData(query);
+        String orderdetailsstart = orderdetailsset.getString(1);
+        String orderdetails = orderdetailsstart.substring(14);
+        int paymenttotal = orderdetailsset.getInt(2);
+        String paymentdetails = String.format("The customer payed %d$ for the order of %s", paymenttotal, orderdetails);
+        orderdetailsset.close();
+        System.out.println(paymentdetails);
+        int totalincome = 0;
+        String query = String.format("SELECT OrderId FROM payment;");
+        ResultSet orderidsrs = Database.getData(query);
+        ArrayList<Integer> orderids = new ArrayList<>();
+        while (orderidsrs.next()) {
+            orderids.add(orderidsrs.getInt(1));
+        }
+        for (Integer orderid : orderids) {
+            String query1 = String.format("SELECT Total FROM orders WHERE OrderId = %d;",
+                    1437);
+            ResultSet ordertotalrs = Database.getData(query1);
+            int ordertotal = ordertotalrs.getInt(1);
+            totalincome += ordertotal;
+            ordertotalrs.close();
+        }
+        orderidsrs.close();
+        System.out.println(totalincome);
+        int totalincome = 0;
+        String query1 = String.format("SELECT Total FROM orders WHERE OrderId = 1436;");
+        ResultSet ordertotalrs = Database.getData(query1);
+        float ordertotal = ordertotalrs.getFloat(1);
+        totalincome += ordertotal;
+        ordertotalrs.close();
+        System.out.println(totalincome);
+        String query = "SELECT Timestamp FROM payment;";
+        ResultSet numberofordersrs = Database.getData(query);
+        Date datetoday = new Date(System.currentTimeMillis());
+        Date numberoforders = numberofordersrs.getDate(1);
+        numberofordersrs.close();
+        System.out.println(numberoforders);
+        System.out.println(datetoday == n);
+    }
+
+     */
 
 }

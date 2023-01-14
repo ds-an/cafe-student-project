@@ -85,6 +85,7 @@ public class LoginController {
                     adminBoardController.populateItemTypeBox();
                     adminBoardController.populateComboBoxes();
                     adminBoardController.populateTables();
+                    adminBoardController.populateBasicInfo();
 //                root = FXMLLoader.load(getClass().getResource("AdminBoard.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);

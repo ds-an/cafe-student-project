@@ -31,6 +31,10 @@ public class Database {
         Connection connection = connect();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(query);
+//        while (rs.next()) {
+//
+//            System.out.println();
+//        }
         return rs;
     }
 
