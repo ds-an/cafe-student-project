@@ -524,90 +524,67 @@ public class BaristaBoardController {
             ordertotal += orderList.get(i).getItemPrice();
         }
         totalText.setText("Total: " + Integer.toString(ordertotal) + "$");
+        if (orderTable.getItems().isEmpty()) {
+            toGoToggle.setDisable(false);
+            clientId.setDisable(false);
+        }
     }
 
     public void takeOrder(ActionEvent event) throws SQLException {
-        Order resultingorder = new Order();
-        String orderdetails = "The order is: ";
-        if (clientId.getText().isEmpty()) {
-            resultingorder.setClientId(0);
-        } else {
-            int clientid = Integer.parseInt(clientId.getText());
-            resultingorder.setClientId(clientid);
-            //
-//            String query = String.format("SELECT CoffeeOrders FROM clients WHERE ClientId = %d;", clientid);
-//            ResultSet clientcupsrs = Database.getData(query);
-//            int clientcups = clientcupsrs.getInt(1);
-//            clientcupsrs.close();
-//            int countercoffee = 0;
-//            for (TakingOrder item : orderList) {
-//                if ((item.getItemId() >= 100 && item.getItemId() < 200)) {
-//                    countercoffee += item.getItemQuantity();
-//                }
-//            }
-//            for (int i = 0; i < countercoffee; i++) {
-//                clientcups++;
-//                if (clientcups % 10 == 0)
-//
-//            }
-        }
-        resultingorder.setBaristaId(baristaId);
-        resultingorder.setOrderTotal(ordertotal);
-        resultingorder.setOrderPaymentStatus("Unpayed");
-        if (toGoToggle.isSelected()) {
-            resultingorder.setOrderType("To Go");
-        } else {
-            resultingorder.setOrderType("Inside");
-        }
-        resultingorder.setOrderTimestamp(null);
-        for (TakingOrder item: orderList) {
-            orderdetails += item.getItemName() + " x" + item.getItemQuantity() + ", ";
-            if (item.getItemId() >= 100 && item.getItemId() < 200) {
-                String query = String.format("UPDATE drinkscoffee SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
-                        item.getItemQuantity(), item.getItemId());
-                Database.inputData(query);
-            }else if (item.getItemId() >= 200 && item.getItemId() < 300) {
-                String query = String.format("UPDATE drinkstea SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
-                        item.getItemQuantity(), item.getItemId());
-                Database.inputData(query);
-            }else if (item.getItemId() >= 300 && item.getItemId() < 400) {
-                String query = String.format("UPDATE drinksother SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
-                        item.getItemQuantity(), item.getItemId());
-                Database.inputData(query);
-            }else if (item.getItemId() >= 400) {
-                String query = String.format("UPDATE food SET TotalLeft = TotalLeft - %d WHERE FoodId = %d",
-                        item.getItemQuantity(), item.getItemId());
-                Database.inputData(query);
+        if (!orderTable.getItems().isEmpty()) {
+            Order resultingorder = new Order();
+            String orderdetails = "The order is: ";
+            if (clientId.getText().isEmpty()) {
+                resultingorder.setClientId(0);
+            } else {
+                int clientid = Integer.parseInt(clientId.getText());
+                resultingorder.setClientId(clientid);
             }
+            resultingorder.setBaristaId(baristaId);
+            resultingorder.setOrderTotal(ordertotal);
+            resultingorder.setOrderPaymentStatus("Unpayed");
+            if (toGoToggle.isSelected()) {
+                resultingorder.setOrderType("To Go");
+            } else {
+                resultingorder.setOrderType("Inside");
+            }
+            resultingorder.setOrderTimestamp(null);
+            for (TakingOrder item : orderList) {
+                orderdetails += item.getItemName() + " x" + item.getItemQuantity() + ", ";
+                if (item.getItemId() >= 100 && item.getItemId() < 200) {
+                    String query = String.format("UPDATE drinkscoffee SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
+                            item.getItemQuantity(), item.getItemId());
+                    Database.inputData(query);
+                } else if (item.getItemId() >= 200 && item.getItemId() < 300) {
+                    String query = String.format("UPDATE drinkstea SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
+                            item.getItemQuantity(), item.getItemId());
+                    Database.inputData(query);
+                } else if (item.getItemId() >= 300 && item.getItemId() < 400) {
+                    String query = String.format("UPDATE drinksother SET TotalLeft = TotalLeft - %d WHERE DrinkId = %d",
+                            item.getItemQuantity(), item.getItemId());
+                    Database.inputData(query);
+                } else if (item.getItemId() >= 400) {
+                    String query = String.format("UPDATE food SET TotalLeft = TotalLeft - %d WHERE FoodId = %d",
+                            item.getItemQuantity(), item.getItemId());
+                    Database.inputData(query);
+                }
+            }
+            String orderdetailsf = orderdetails.substring(0, orderdetails.length() - 1) + ".";
+            resultingorder.setOrderDetails(orderdetailsf);
+            resultingorder.insertOrder();
+            orderList.clear();
+            clientId.setText("");
+            itemAmount.setText("1");
+            itemId.setText("");
+            totalText.setText("Total: 0$");
+            orderTable.getItems().clear();
+            populateTables();
+            toGoToggle.setDisable(false);
+            clientId.setDisable(false);
+        } else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "This order is empty. Please fill the order.");
+            alert.showAndWait();
         }
-        String orderdetailsf = orderdetails.substring(0, orderdetails.length() - 1) + ".";
-        resultingorder.setOrderDetails(orderdetailsf);
-        resultingorder.insertOrder();
-        orderList.clear();
-        clientId.setText("");
-        itemAmount.setText("1");
-        itemId.setText("");
-        totalText.setText("Total: 0$");
-        orderTable.getItems().clear();
-        populateTables();
-        toGoToggle.setDisable(false);
-        clientId.setDisable(false);
-//        {
-//            ResultSet data = Database.getData("SELECT OrderId, PaymentStatus FROM orders;");
-//            ArrayList<Order> items = new ArrayList<>();
-//            while (data.next()) {
-//                Order item = new Order();
-//                item.setOrderId(data.getInt(1));
-//                item.setOrderPaymentStatus(data.getString(2));
-//                items.add(item);
-//            }
-//            data.close();
-//            items.sort(Comparator.comparing(Order :: getOrderId).reversed());
-//            ObservableList<Order> orders = FXCollections.observableArrayList(items);
-//            paymentsTableOrderId.setCellValueFactory(new PropertyValueFactory<>("OrderId"));
-//            paymentTableOrderStatus.setCellValueFactory(new PropertyValueFactory<>("OrderPaymentStatus"));
-//            paymentTable.setItems(orders);
-//        }
     }
 
     public void toGoToggleSwitch(ActionEvent event) throws SQLException {

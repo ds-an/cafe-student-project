@@ -242,6 +242,9 @@ public class ClientBoardController {
     private Text welcomeText;
 
     @FXML
+    private Label welcomeText2;
+
+    @FXML
     private Button callBarista;
 
     private Stage stage;
@@ -250,8 +253,11 @@ public class ClientBoardController {
 
     private Parent root;
 
-    public void setNameLabel(String username) {
-        welcomeText.setText("Welcome, " + username);
+    public void setNameLabel(int ClientId) throws SQLException {
+        String query = String.format("SELECT FirstName FROM clients WHERE ClientId = %d;", ClientId);
+        ResultSet clientnamers = Database.getData(query);
+        String clientname = clientnamers.getString(1);
+        welcomeText2.setText("Welcome, dear " + clientname + "!");
     }
 
     public void callBarista(ActionEvent event) throws IOException {

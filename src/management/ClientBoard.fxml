@@ -311,7 +311,7 @@
       <AnchorPane prefHeight="200.0" prefWidth="200.0">
          <children>
             <Separator layoutX="13.0" layoutY="143.0" prefHeight="3.0" prefWidth="1174.0" />
-            <Label layoutX="22.0" layoutY="61.0" text="Browse the menu and call the barista when you are ready.">
+            <Label layoutX="20.0" layoutY="81.0" text="Browse the menu and call the barista when you are ready.">
                <font>
                   <Font size="30.0" />
                </font>
@@ -338,6 +338,11 @@
                          </TableView>
                      </children>
                  </AnchorPane>
+            <Label fx:id="welcomeText2" layoutX="20.0" layoutY="24.0" text="Welcome, dear customer!">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

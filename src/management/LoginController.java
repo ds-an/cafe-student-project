@@ -132,7 +132,8 @@ public class LoginController {
                     root = loader.load();
                     ClientBoardController clientBoardController = loader.getController();
                     loader.setController(clientBoardController);
-                    clientBoardController.setNameLabel(username);
+                    clientBoardController.populateMenu();
+                    clientBoardController.setNameLabel(users.getInt(1));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
@@ -190,30 +191,10 @@ public class LoginController {
         alert.showAndWait();
     }
 
-//    public void openLink() throws URISyntaxException, IOException {
-//        String url = "https://www.youtube.com/@marcomanchannel";
-//
-//        if(Desktop.isDesktopSupported()){
-//            Desktop desktop = Desktop.getDesktop();
-//            try {
-//                desktop.browse(new URI(url));
-//            } catch (IOException | URISyntaxException e) {
-//                e.printStackTrace();
-//            }
-//        }else{
-//            Runtime runtime = Runtime.getRuntime();
-//            try {
-//                runtime.exec("xdg-open " + url);
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
     public void registerClient(ActionEvent event) throws SQLException {
         if (firstNameField.getText().isEmpty() || loginField.getText().isEmpty() ||
-        passwordField2.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please provide your first name, login and password. " +
+        passwordField2.getText().isEmpty() || emailField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please provide your first name, email, username and password. " +
                     "Everything else is optional!");
             alert.showAndWait();
             throw new SQLException("Some of the necessary info was not provided by the user.");
@@ -224,10 +205,10 @@ public class LoginController {
         client.setPhoneNumber(phoneNumberField.getText());
         client.setEmail(emailField.getText());
         client.insertClient();
-        String query = String.format("INSERT INTO access VALUES ((SELECT ClientId from clients WHERE ROWID = last_insert_rowid()), '%s', '%s');",
+        String query = String.format("INSERT INTO access VALUES ((SELECT max(ClientId) from clients), '%s', '%s');",
                 loginField.getText(), passwordField2.getText());
         Database.inputData(query);
-        String query1 = "SELECT ClientId from clients WHERE ROWID = last_insert_rowid();";
+        String query1 = "SELECT max(ClientId) from clients;";
         ResultSet lastclientidrs = Database.getData(query1);
         int lastclientid = lastclientidrs.getInt(1);
         String greeting = String.format("%s, thank you for registering at our Coffee Shop!\n" +

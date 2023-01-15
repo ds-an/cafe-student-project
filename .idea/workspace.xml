@@ -10,23 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4dc350d7-c72e-47f4-8602-acd04cbaa2ab" name="Changes" comment="Hopefully one of the last commits. Most of what needed to be done is done.">
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cafedb.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/cafedb.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/AdminBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoard.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/AdminBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/AdminBoardController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/management/BaristaBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/BaristaBoardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/ClientBoard.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/ClientBoard.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/ClientBoardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/ClientBoardController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/Login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/management/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/management/ManagementSys.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/management/ManagementSys.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/CoffeeDrink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/CoffeeDrink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/OtherDrink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/OtherDrink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/items/TeaDrink.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/items/TeaDrink.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/objects/users/Barista.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/objects/users/Barista.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utility/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utility/Database.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -237,7 +226,7 @@
       <workItem from="1673595900823" duration="30640000" />
       <workItem from="1673702338765" duration="19655000" />
       <workItem from="1673729374909" duration="7109000" />
-      <workItem from="1673769953755" duration="746000" />
+      <workItem from="1673769953755" duration="6689000" />
     </task>
     <task id="LOCAL-00001" summary="First commit.">
       <created>1672069472963</created>
@@ -344,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1673710475740</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Hopefully one of the last commits. Most of what needed to be done is done.">
+      <created>1673770997478</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1673770997478</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +387,8 @@
     <MESSAGE value="Major improvents in the barista dashboard, it's almost done." />
     <MESSAGE value="Major improvents in the barista dashboard, it's done. Maybe some tweaks later." />
     <MESSAGE value="Implemented a feature of client getting every tenth coffee cup for free. Fixed &quot;Remove from order&quot; feature." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented a feature of client getting every tenth coffee cup for free. Fixed &quot;Remove from order&quot; feature." />
+    <MESSAGE value="Hopefully one of the last commits. Most of what needed to be done is done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Hopefully one of the last commits. Most of what needed to be done is done." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
