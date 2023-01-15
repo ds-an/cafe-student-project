@@ -92,7 +92,7 @@ public class LoginController {
                     root = loader.load();
                     AdminBoardController adminBoardController = loader.getController();
                     loader.setController(adminBoardController);
-                    adminBoardController.setNameLabel(username);
+                    adminBoardController.setNameLabel(users.getInt(1));
                     adminBoardController.setCurrentDate();
                     adminBoardController.populateItemTypeBox();
                     adminBoardController.populateComboBoxes();
@@ -111,7 +111,7 @@ public class LoginController {
                     root = loader.load();
                     BaristaBoardController baristaBoardController = loader.getController();
                     loader.setController(baristaBoardController);
-                    baristaBoardController.setNameLabel(username);
+                    baristaBoardController.setNameLabel(users.getInt(1));
                     baristaBoardController.setCurrentDate();
                     baristaBoardController.populateTables();
                     baristaBoardController.populateComboBoxes();

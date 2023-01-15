@@ -258,6 +258,7 @@ public class ClientBoardController {
         ResultSet clientnamers = Database.getData(query);
         String clientname = clientnamers.getString(1);
         welcomeText2.setText("Welcome, dear " + clientname + "!");
+        clientnamers.close();
     }
 
     public void callBarista(ActionEvent event) throws IOException {

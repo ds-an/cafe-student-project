@@ -258,8 +258,13 @@ public class BaristaBoardController {
 
     private Parent root;
 
-    public void setNameLabel(String username) {
+    public void setNameLabel(int userid) throws SQLException {
+        String query = String.format("SELECT FirstName FROM baristas WHERE BaristaId = %d;", userid);
+        ResultSet usernamers = Database.getData(query);
+        String username = usernamers.getString(1);
         welcomeText.setText("Welcome, " + username);
+        usernamers.close();
+//        welcomeText.setText("Welcome, " + username);
     }
 
     public void setCurrentDate() {

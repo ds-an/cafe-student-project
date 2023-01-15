@@ -435,8 +435,13 @@ public class AdminBoardController {
 
     private String[] eshifts = {"Morning", "Evening"};
 
-    public void setNameLabel(String username) {
+    public void setNameLabel(int userid) throws SQLException {
+        String query = String.format("SELECT FirstName FROM managers WHERE ManagerId = %d;", userid);
+        ResultSet usernamers = Database.getData(query);
+        String username = usernamers.getString(1);
         welcomeText.setText("Welcome, " + username);
+        usernamers.close();
+//        welcomeText.setText("Welcome, " + username);
     }
 
     public void setCurrentDate() {
@@ -715,7 +720,7 @@ public class AdminBoardController {
 
     public void populateBasicInfo() throws SQLException {
         {
-            String query = "SELECT COUNT(PaymentId) FROM payment;";
+            String query = "SELECT COUNT(OrderId) FROM orders HAVING PaymentStatus = 'Payed';";
             ResultSet numberofordersrs = Database.getData(query);
             int numberoforders = numberofordersrs.getInt(1);
             numberofordersrs.close();
@@ -739,7 +744,7 @@ public class AdminBoardController {
         }
         {
             XYChart.Series chart = new XYChart.Series();
-            String query = "SELECT date(Timestamp), sum(Total) FROM orders GROUP BY date(Timestamp) ORDER BY Timestamp ASC LIMIT 10;";
+            String query = "SELECT date(Timestamp), sum(Total) FROM orders WHERE PaymentStatus = 'Payed' GROUP BY date(Timestamp) ORDER BY Timestamp ASC LIMIT 10;";
             ResultSet chartdatars = Database.getData(query);
             while (chartdatars.next()) {
                 chart.getData().add(new XYChart.Data(chartdatars.getString(1), chartdatars.getInt(2)));
