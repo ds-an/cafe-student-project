@@ -14,6 +14,7 @@ public abstract class Item {
     private SimpleFloatProperty PriceInside;
     private SimpleFloatProperty PriceOutside;
     private SimpleIntegerProperty TotalLeft;
+    private SimpleStringProperty Description;
 
     public Item() {
         this.id = new SimpleIntegerProperty();
@@ -22,6 +23,7 @@ public abstract class Item {
         this.PriceInside = new SimpleFloatProperty();
         this.PriceOutside = new SimpleFloatProperty();
         this.TotalLeft = new SimpleIntegerProperty();
+        this.Description = new SimpleStringProperty();
     }
 
     public Item(String itemName, String itemType, float priceInside, float priceOutside, int totalLeft) {
@@ -103,6 +105,18 @@ public abstract class Item {
 
     public void setTotalLeft(int totalLeft) {
         this.TotalLeft.set(totalLeft);
+    }
+
+    public String getDescription() {
+        return Description.get();
+    }
+
+    public SimpleStringProperty descriptionProperty() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        this.Description.set(description);
     }
 
     //    public String getId() {

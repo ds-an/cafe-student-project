@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
@@ -19,7 +20,7 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="management.ClientBoardController">
    <children>
-      <GridPane>
+      <GridPane visible="false">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -97,26 +98,7 @@
                <children>
                    <TabPane layoutX="14.0" layoutY="14.0" prefHeight="798.0" prefWidth="741.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                        <tabs>
-                           <Tab text="Full Menu">
-                               <content>
-                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                           <TableView fx:id="fullMenuTable" layoutY="88.0" prefHeight="767.0" prefWidth="741.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                               <columns>
-                                                   <TableColumn fx:id="fullMenuTableId" prefWidth="45.0" text="ID" />
-                                                   <TableColumn fx:id="fullMenuTableName" prefWidth="105.0" text="Name" />
-                                                   <TableColumn fx:id="fullMenuTableType" prefWidth="75.0" text="Type" />
-                                                   <TableColumn fx:id="fullMenuTableMilkType" prefWidth="75.0" text="MType" />
-                                                   <TableColumn fx:id="fullMenuTableTemp" prefWidth="46.0" text="T" />
-                                                   <TableColumn fx:id="fullMenuTablePriceIns" prefWidth="104.0" text="PriceIns" />
-                                                   <TableColumn fx:id="fullMenuTablePriceOut" prefWidth="123.0" text="PriceOut" />
-                                                   <TableColumn fx:id="fullMenuTotalLeft" minWidth="6.0" prefWidth="71.0" text="TLeft" />
-                                               </columns>
-                                           </TableView>
-                                       </children>
-                                   </AnchorPane>
-                               </content>
-                           </Tab>
+                           <Tab text="Full Menu" />
                            <Tab text="Coffee">
                                <content>
                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -326,5 +308,37 @@
             </AnchorPane>
         </items>
       </SplitPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Separator layoutX="13.0" layoutY="143.0" prefHeight="3.0" prefWidth="1174.0" />
+            <Label layoutX="22.0" layoutY="61.0" text="Browse the menu and call the barista when you are ready.">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Button fx:id="callBarista" layoutX="966.0" layoutY="60.0" mnemonicParsing="false" onAction="#callBarista" text="Call the Barista!">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+                 <AnchorPane layoutX="20.0" layoutY="164.0" minHeight="0.0" minWidth="0.0" prefHeight="595.0" prefWidth="1164.0">
+                     <children>
+                         <TableView fx:id="fullMenuTable" layoutY="88.0" prefHeight="767.0" prefWidth="741.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                             <columns>
+                                 <TableColumn fx:id="fullMenuTableId" prefWidth="45.0" text="ID" />
+                                 <TableColumn fx:id="fullMenuTableName" prefWidth="105.0" text="Name" />
+                                 <TableColumn fx:id="fullMenuTableType" prefWidth="75.0" text="Type" />
+                                 <TableColumn fx:id="fullMenuTableMilkType" prefWidth="75.0" text="MType" />
+                                 <TableColumn fx:id="fullMenuTableTemp" prefWidth="46.0" text="T" />
+                                 <TableColumn fx:id="fullMenuTablePriceIns" prefWidth="104.0" text="PriceIns" />
+                                 <TableColumn fx:id="fullMenuTablePriceOut" prefWidth="123.0" text="PriceOut" />
+                                 <TableColumn fx:id="fullMenuTotalLeft" minWidth="6.0" prefWidth="71.0" text="TLeft" />
+                        <TableColumn fx:id="fullMenuDescription" minWidth="6.0" prefWidth="519.0" text="Description" />
+                             </columns>
+                         </TableView>
+                     </children>
+                 </AnchorPane>
+         </children>
+      </AnchorPane>
    </children>
 </StackPane>

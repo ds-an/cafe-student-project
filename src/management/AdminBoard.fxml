@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.AreaChart?>
 <?import javafx.scene.chart.CategoryAxis?>
-<?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -65,12 +64,18 @@
                </children></AnchorPane>
             <AnchorPane layoutX="252.0" layoutY="39.0" prefHeight="759.0" prefWidth="946.0">
                <children>
-                  <AnchorPane fx:id="dashBoardPane" prefHeight="759.0" prefWidth="824.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="dashBoardPane" layoutX="17.0" layoutY="14.0" prefHeight="439.0" prefWidth="870.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="40.0" layoutY="47.0" prefHeight="135.0" prefWidth="258.0">
                            <children>
-                              <Text layoutX="58.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Orders" />
-                              <Text fx:id="numberOfOrdersText" layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Text layoutX="57.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Orders">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Text>
+                              <Text fx:id="numberOfOrdersText" layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Text>
                            </children>
                         </AnchorPane>
                         <Separator layoutX="8.0" layoutY="236.0" prefHeight="3.0" prefWidth="931.0" />
@@ -126,34 +131,18 @@
                                     </AnchorPane>
                                  </content>
                               </Tab>
-                            <Tab fx:id="incomeChartTab" text="Income">
+                            <Tab fx:id="incomeChartTab" text="Income By Day">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <LineChart layoutX="17.0" layoutY="14.0" prefHeight="439.0" prefWidth="870.0">
+                                          <AreaChart fx:id="incomeChart" layoutX="24.0" layoutY="17.0" prefHeight="431.0" prefWidth="851.0">
                                             <xAxis>
                                               <CategoryAxis side="BOTTOM" />
                                             </xAxis>
                                             <yAxis>
                                               <NumberAxis side="LEFT" />
                                             </yAxis>
-                                          </LineChart>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                            <Tab fx:id="numberOfOrdersTab" text="№ of Orders">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <BarChart layoutX="17.0" layoutY="14.0" prefHeight="439.0" prefWidth="870.0">
-                                            <xAxis>
-                                              <CategoryAxis side="BOTTOM" />
-                                            </xAxis>
-                                            <yAxis>
-                                              <NumberAxis side="LEFT" />
-                                            </yAxis>
-                                          </BarChart>
+                                          </AreaChart>
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -162,19 +151,31 @@
                         </TabPane>
                         <AnchorPane layoutX="336.0" layoutY="47.0" prefHeight="135.0" prefWidth="258.0">
                            <children>
-                              <Text layoutX="78.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's Income" />
-                              <Text fx:id="todaysIncomeText" layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Text layoutX="78.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Today's Income">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Text>
+                              <Text fx:id="todaysIncomeText" layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Text>
                            </children>
                         </AnchorPane>
                         <AnchorPane layoutX="644.0" layoutY="47.0" prefHeight="135.0" prefWidth="258.0">
                            <children>
-                              <Text layoutX="87.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Income" />
-                              <Text fx:id="totalncomeText" layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                              <Text layoutX="87.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total Income">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Text>
+                              <Text fx:id="totalncomeText" layoutX="189.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Text>
                            </children>
                         </AnchorPane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="itemsPane" prefHeight="759.0" prefWidth="824.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <AnchorPane fx:id="itemsPane" prefHeight="759.0" prefWidth="824.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <AnchorPane layoutX="6.0" layoutY="14.0" prefHeight="730.0" prefWidth="271.0">
                            <children>
@@ -184,11 +185,11 @@
                                     <Font size="18.0" />
                                  </font></Button>
                               <ComboBox fx:id="itemType" layoutX="114.0" layoutY="36.0" onAction="#switchItemsChoiceView" prefHeight="24.0" prefWidth="137.0" />
-                              <Button fx:id="updateItemButton" layoutX="51.0" layoutY="557.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="170.0" text="Update Prices">
+                              <Button fx:id="updateItemButton" layoutX="51.0" layoutY="557.0" mnemonicParsing="false" onAction="#updateItemPrice" prefHeight="40.0" prefWidth="170.0" text="Update Prices">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
-                              <Button fx:id="clearItemsButton" layoutX="51.0" layoutY="610.0" mnemonicParsing="false" onAction="#clearItemFields" prefHeight="40.0" prefWidth="170.0" text="Clear">
+                              <Button fx:id="getDescriptionButton" layoutX="51.0" layoutY="610.0" mnemonicParsing="false" onAction="#getItemDescription" prefHeight="40.0" prefWidth="170.0" text="Get Description">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
@@ -247,7 +248,7 @@
                                                 <TextArea fx:id="drinkDescription" layoutX="14.0" layoutY="145.0" prefHeight="108.0" prefWidth="218.0" promptText="Please provide a short description of the item..." />
                                              </children>
                                           </AnchorPane>
-                                          <AnchorPane fx:id="paneChoiceFood" prefHeight="329.0" prefWidth="232.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                          <AnchorPane fx:id="paneChoiceFood" prefHeight="329.0" prefWidth="232.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                              <children>
                                                 <TextField fx:id="foodName" layoutX="94.0380859375" prefHeight="24.0" prefWidth="137.0" />
                                                 <Label layoutX="21.0380859375" layoutY="4.0" text="Name:" />
@@ -266,7 +267,7 @@
                               </AnchorPane>
                               <TextField fx:id="itemIdField" layoutX="103.0" layoutY="414.0" prefHeight="24.0" prefWidth="66.0" promptText="Item ID">
                                  <tooltip>
-                                    <Tooltip text="For removing from the menu" />
+                                    <Tooltip text="For removing items from the menu and updating their prices" />
                                  </tooltip>
                               </TextField>
                            </children>
@@ -362,10 +363,9 @@
                                     <TableColumn fx:id="employeeTableId" prefWidth="37.0" text="ID" />
                                     <TableColumn fx:id="employeeTableFirstName" prefWidth="141.0" text="FirstName" />
                                     <TableColumn fx:id="employeeTableLastName" prefWidth="141.0" text="LastName" />
-                                    <TableColumn fx:id="employeeTableShift" minWidth="0.0" prefWidth="94.0" text="Shift" />
-                                    <TableColumn fx:id="employeeTableRank" prefWidth="106.0" text="Rank" />
-                                    <TableColumn fx:id="employeeTablePhoneNumber" prefWidth="195.0" text="PhoneNumber" />
-                                    <TableColumn fx:id="employeeTableEmail" prefWidth="225.0" text="Email" />
+                                    <TableColumn fx:id="employeeTableShift" minWidth="0.0" prefWidth="109.0" text="Shift" />
+                                    <TableColumn fx:id="employeeTablePhoneNumber" prefWidth="225.0" text="PhoneNumber" />
+                                    <TableColumn fx:id="employeeTableEmail" prefWidth="286.0" text="Email" />
                                  </columns>
                               </TableView>
                            </children>
@@ -373,27 +373,22 @@
                         <Separator layoutX="12.0" layoutY="233.0" prefHeight="16.0" prefWidth="921.0" />
                         <AnchorPane layoutX="3.0" layoutY="8.0" prefHeight="225.0" prefWidth="940.0">
                            <children>
-                              <Button fx:id="hireEmployee" layoutX="25.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Hire">
+                              <Button fx:id="hireEmployee" layoutX="25.0" layoutY="14.0" mnemonicParsing="false" onAction="#hireEmployee" prefHeight="40.0" prefWidth="80.0" text="Hire">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="changeShiftEmployee" layoutX="134.0" layoutY="86.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="CShift">
+                              <Button fx:id="changeShiftEmployee" layoutX="24.0" layoutY="86.0" mnemonicParsing="false" onAction="#changeShiftEmployee" prefHeight="40.0" prefWidth="190.0" text="Change Shift">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="fireEmployee" layoutX="134.0" layoutY="14.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Fire">
+                              <Button fx:id="fireEmployee" layoutX="134.0" layoutY="14.0" mnemonicParsing="false" onAction="#fireEmployee" prefHeight="40.0" prefWidth="80.0" text="Fire">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="promoteEmployee" layoutX="25.0" layoutY="86.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" text="Promote">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="clearFieldsEmployee" layoutX="24.0" layoutY="159.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="190.0" text="Clear">
+                              <Button fx:id="clearFieldsEmployee" layoutX="24.0" layoutY="159.0" mnemonicParsing="false" onAction="#clearFieldsEmployee" prefHeight="40.0" prefWidth="190.0" text="Clear">
                                  <font>
                                     <Font size="16.0" />
                                  </font>
@@ -401,18 +396,16 @@
                               <Separator layoutX="234.0" layoutY="3.0" orientation="VERTICAL" prefHeight="219.0" prefWidth="0.0" />
                               <Label layoutX="507.0" layoutY="26.0" text="ID:" />
                               <Label layoutX="576.0" layoutY="138.0" text="Email:" />
-                              <Label layoutX="576.0" layoutY="105.0" text="Phone Number:" />
+                              <Label layoutX="576.0" layoutY="75.0" text="Phone Number:" />
                               <Label layoutX="256.0" layoutY="138.0" text="Shift:" />
-                              <Label layoutX="576.0" layoutY="74.0" text="Rank:" />
                               <Label layoutX="256.0" layoutY="74.0" text="First Name:" />
                               <Label layoutX="256.0" layoutY="105.0" text="Last Name:" />
                               <TextField fx:id="employeeId" layoutX="530.0" layoutY="22.0" prefHeight="24.0" prefWidth="46.0" />
-                              <TextField fx:id="employeePhoneNumber" layoutX="684.0" layoutY="100.0" prefHeight="24.0" prefWidth="150.0" />
+                              <TextField fx:id="employeePhoneNumber" layoutX="684.0" layoutY="70.0" prefHeight="24.0" prefWidth="150.0" />
                               <TextField fx:id="employeeFirstName" layoutX="335.0" layoutY="70.0" prefHeight="24.0" prefWidth="150.0" />
                               <TextField fx:id="employeeLastName" layoutX="335.0" layoutY="101.0" prefHeight="24.0" prefWidth="150.0" />
                               <TextField fx:id="employeeEmail" layoutX="684.0" layoutY="133.0" prefHeight="24.0" prefWidth="150.0" />
                               <ComboBox fx:id="employeeShift" layoutX="335.0" layoutY="134.0" prefWidth="150.0" />
-                              <ComboBox fx:id="employeeRank" layoutX="684.0" layoutY="69.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                      </children>

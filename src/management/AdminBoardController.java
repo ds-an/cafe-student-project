@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -66,7 +68,7 @@ public class AdminBoardController {
     private Button clearFieldsEmployee;
 
     @FXML
-    private Button clearItemsButton;
+    private Button getDescriptionButton;
 
     @FXML
     private ComboBox<?> coffeeMilkType;
@@ -410,6 +412,9 @@ public class AdminBoardController {
     @FXML
     private TextArea foodDescription;
 
+    @FXML
+    private AreaChart<?, ?> incomeChart;
+
     private Stage stage;
 
     private Scene scene;
@@ -732,6 +737,15 @@ public class AdminBoardController {
             totalincomers.close();
             totalncomeText.setText(Float.toString(totalincome));
         }
+        {
+            XYChart.Series chart = new XYChart.Series();
+            String query = "SELECT date(Timestamp), sum(Total) FROM orders GROUP BY date(Timestamp) ORDER BY Timestamp ASC LIMIT 10;";
+            ResultSet chartdatars = Database.getData(query);
+            while (chartdatars.next()) {
+                chart.getData().add(new XYChart.Data(chartdatars.getString(1), chartdatars.getInt(2)));
+            }
+            incomeChart.getData().add(chart);
+        }
     }
 
     public void getDetailsOrder(ActionEvent event) throws SQLException {
@@ -765,15 +779,19 @@ public class AdminBoardController {
         coffeeName.clear();
         coffeePriceIns.clear();
         coffeePriceOut.clear();
+        coffeeDescription.clear();
         teaName.clear();
         teaPriceIns.clear();
         teaPriceOut.clear();
+        teaDescription.clear();
         drinkName.clear();
         drinkPriceIns.clear();
         drinkPriceOut.clear();
+        drinkDescription.clear();
         foodName.clear();
         foodPriceIns.clear();
         foodPriceOut.clear();
+        foodDescription.clear();
     }
 
     public void removeItem() throws SQLException {
@@ -808,6 +826,7 @@ public class AdminBoardController {
             drink.setPriceInside(Integer.parseInt(coffeePriceIns.getText()));
             drink.setPriceOutside(Integer.parseInt(coffeePriceOut.getText()));
             drink.setTotalLeft(100);
+            drink.setDescription(coffeeDescription.getText());
             drink.insertItem();
             clearItemFields();
             populateTables();
@@ -820,6 +839,7 @@ public class AdminBoardController {
             drink.setPriceInside(Integer.parseInt(teaPriceIns.getText()));
             drink.setPriceOutside(Integer.parseInt(teaPriceOut.getText()));
             drink.setTotalLeft(100);
+            drink.setDescription(teaDescription.getText());
             drink.insertItem();
             clearItemFields();
             populateTables();
@@ -830,6 +850,7 @@ public class AdminBoardController {
             drink.setPriceInside(Integer.parseInt(drinkPriceIns.getText()));
             drink.setPriceOutside(Integer.parseInt(drinkPriceOut.getText()));
             drink.setTotalLeft(100);
+            drink.setDescription(drinkDescription.getText());
             drink.insertItem();
             clearItemFields();
             populateTables();
@@ -840,10 +861,101 @@ public class AdminBoardController {
             food.setPriceInside(Integer.parseInt(foodPriceIns.getText()));
             food.setPriceOutside(Integer.parseInt(foodPriceOut.getText()));
             food.setTotalLeft(100);
+            food.setDescription(foodDescription.getText());
             food.insertItem();
             clearItemFields();
             populateTables();
         }
+    }
+
+    public void updateItemPrice() throws SQLException {
+        if (itemType.getValue() == "Coffee") {
+            String query = String.format("UPDATE drinkscoffee SET PriceInside = %f, PriceOutside = %f WHERE DrinkId = %d",
+                    Float.parseFloat(coffeePriceIns.getText()), Float.parseFloat(coffeePriceOut.getText()),
+                    Integer.parseInt(itemIdField.getText()));
+            Database.inputData(query);
+            clearItemFields();
+            populateTables();
+        }else if(itemType.getValue() == "Tea") {
+            String query = String.format("UPDATE drinkstea SET PriceInside = %f, PriceOutside = %f WHERE DrinkId = %d",
+                    Float.parseFloat(teaPriceIns.getText()), Float.parseFloat(teaPriceOut.getText()),
+                    Integer.parseInt(itemIdField.getText()));
+            Database.inputData(query);
+            clearItemFields();
+            populateTables();
+        }else if(itemType.getValue() == "Drinks") {
+            String query = String.format("UPDATE drinksother SET PriceInside = %f, PriceOutside = %f WHERE DrinkId = %d",
+                    Float.parseFloat(drinkPriceIns.getText()), Float.parseFloat(drinkPriceOut.getText()),
+                    Integer.parseInt(itemIdField.getText()));
+            Database.inputData(query);
+            clearItemFields();
+            populateTables();
+        }else if(itemType.getValue() == "Food") {
+            String query = String.format("UPDATE food SET PriceInside = %f, PriceOutside = %f WHERE DrinkId = %d",
+                    Float.parseFloat(foodPriceIns.getText()), Float.parseFloat(foodPriceOut.getText()),
+                    Integer.parseInt(itemIdField.getText()));
+            Database.inputData(query);
+            clearItemFields();
+            populateTables();
+        }
+    }
+
+    public void getItemDescription() throws SQLException {
+        int itemid = Integer.parseInt(itemIdField.getText());
+        String query = String.format("SELECT Description FROM full_menu WHERE ItemId = %d", itemid);
+        ResultSet itemdetailsset = Database.getData(query);
+        String itemdetails = itemdetailsset.getString(1);
+        itemdetailsset.close();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, itemdetails, ButtonType.CLOSE);
+        alert.show();
+    }
+
+    public void clearFieldsEmployee() {
+        employeeId.clear();
+        employeeFirstName.clear();
+        employeeLastName.clear();
+        employeePhoneNumber.clear();
+        employeeEmail.clear();
+    }
+
+    public void hireEmployee() throws SQLException {
+        Barista barista = new Barista();
+        barista.setFirstName(employeeFirstName.getText());
+        barista.setLastName(employeeLastName.getText());
+        barista.setShift(employeeShift.getValue().toString());
+        barista.setPhoneNumber(employeePhoneNumber.getText());
+        barista.setEmail(employeeEmail.getText());
+        barista.insertBarista();
+        clearFieldsEmployee();
+        populateTables();
+        TextInputDialog dialog = new TextInputDialog();
+        dialog.setHeaderText("Please enter the employee's login.");
+        dialog.showAndWait();
+        String login = dialog.getEditor().getText();
+        TextInputDialog dialog2 = new TextInputDialog();
+        dialog2.setHeaderText("Please enter the employee's password.");
+        dialog2.showAndWait();
+        String password = dialog2.getEditor().getText();
+        String query = String.format("INSERT INTO access VALUES ((SELECT max(BaristaId) FROM baristas), '%s', '%s');",
+                login, password);
+        Database.inputData(query);
+    }
+
+    public void fireEmployee() throws SQLException {
+        String query = String.format("DELETE FROM baristas WHERE BaristaId = %d", Integer.parseInt(employeeId.getText()));
+        Database.inputData(query);
+        String query2 = String.format("DELETE FROM access WHERE AccessId = %d", Integer.parseInt(employeeId.getText()));
+        Database.inputData(query2);
+        clearFieldsEmployee();
+        populateTables();
+    }
+
+    public void changeShiftEmployee() throws SQLException {
+        String query = String.format("UPDATE baristas SET Shift = '%s' WHERE BaristaId = %d", employeeShift.getValue().toString(),
+                Integer.parseInt(employeeId.getText()));
+        Database.inputData(query);
+        clearFieldsEmployee();
+        populateTables();
     }
 
     /*
