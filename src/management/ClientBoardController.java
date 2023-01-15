@@ -1,17 +1,25 @@
 package management;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.image.Image;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import objects.items.FullMenuItem;
+import utility.Database;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.time.LocalDate;
+import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ClientBoardController {
 
@@ -124,7 +132,7 @@ public class ClientBoardController {
     private TableColumn<?, ?> foodTableType;
 
     @FXML
-    private TableView<?> fullMenuTable;
+    private TableView<FullMenuItem> fullMenuTable;
 
     @FXML
     private TableColumn<?, ?> fullMenuTableId;
@@ -149,6 +157,9 @@ public class ClientBoardController {
 
     @FXML
     private TableColumn<?, ?> fullMenuTotalLeft;
+
+    @FXML
+    private TableColumn<?, ?> fullMenuDescription;
 
     @FXML
     private Button goBack;
@@ -230,7 +241,64 @@ public class ClientBoardController {
     @FXML
     private Text welcomeText;
 
-    public void setNameLabel(String username) {
-        welcomeText.setText("Welcome, " + username);
+    @FXML
+    private Label welcomeText2;
+
+    @FXML
+    private Button callBarista;
+
+    private Stage stage;
+
+    private Scene scene;
+
+    private Parent root;
+
+    public void setNameLabel(int ClientId) throws SQLException {
+        String query = String.format("SELECT FirstName FROM clients WHERE ClientId = %d;", ClientId);
+        ResultSet clientnamers = Database.getData(query);
+        String clientname = clientnamers.getString(1);
+        welcomeText2.setText("Welcome, dear " + clientname + "!");
+        clientnamers.close();
+    }
+
+    public void callBarista(ActionEvent event) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Our barista is coming, please wait.");
+        alert.showAndWait();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+        root = loader.load();
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public void populateMenu() throws SQLException {
+        ResultSet data = Database.getData("SELECT * FROM full_menu;");
+        ArrayList<FullMenuItem> items = new ArrayList<>();
+        while (data.next()) {
+            FullMenuItem item = new FullMenuItem();
+            item.setId(data.getInt(1));
+            item.setItemName(data.getString(2));
+            item.setItemType(data.getString(3));
+            item.setMilkType(data.getString(4));
+            item.setTemperature(data.getString(5));
+            item.setPriceInside(data.getFloat(6));
+            item.setPriceOutside(data.getFloat(7));
+            item.setTotalLeft(data.getInt(8));
+            item.setDescription(data.getString(9));
+            items.add(item);
+        }
+        data.close();
+        ObservableList<FullMenuItem> fullMenuItems = FXCollections.observableArrayList(items);
+        fullMenuTableId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        fullMenuTableName.setCellValueFactory(new PropertyValueFactory<>("ItemName"));
+        fullMenuTableType.setCellValueFactory(new PropertyValueFactory<>("ItemType"));
+        fullMenuTableMilkType.setCellValueFactory(new PropertyValueFactory<>("MilkType"));
+        fullMenuTableTemp.setCellValueFactory(new PropertyValueFactory<>("Temperature"));
+        fullMenuTablePriceIns.setCellValueFactory(new PropertyValueFactory<>("PriceInside"));
+        fullMenuTablePriceOut.setCellValueFactory(new PropertyValueFactory<>("PriceOutside"));
+        fullMenuTotalLeft.setCellValueFactory(new PropertyValueFactory<>("TotalLeft"));
+        fullMenuDescription.setCellValueFactory(new PropertyValueFactory<>("Description"));
+        fullMenuTable.setItems(fullMenuItems);
     }
 }

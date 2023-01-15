@@ -24,9 +24,9 @@ public class CoffeeDrink extends Item {
 
     @Override
     public void insertItem() throws SQLException {
-        String query = String.format("INSERT INTO drinkscoffee VALUES (NULL, '%s', '%s', '%s', '%s', '%f', '%f', '%d')",
-                super.getItemName(), super.getItemType(), this.MilkType, this.Temperature,
-                super.getPriceInside(), super.getPriceOutside(), super.getTotalLeft());
+        String query = String.format("INSERT INTO drinkscoffee VALUES (NULL, '%s', '%s', '%s', '%s', %f, %f, %d, '%s')",
+                super.getItemName(), super.getItemType(), this.getMilkType(), this.getTemperature(),
+                super.getPriceInside(), super.getPriceOutside(), super.getTotalLeft(), super.getDescription());
         Database.inputData(query);
     }
 

@@ -7,16 +7,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import objects.users.Client;
 import utility.Database;
 
+import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -39,6 +45,8 @@ public class LoginController {
     @FXML
     private AnchorPane mainLoginScreenPane;
     @FXML
+    private AnchorPane creditsPane;
+    @FXML
     private TextField passwordField2;
     @FXML
     private TextField phoneNumberField;
@@ -56,6 +64,10 @@ public class LoginController {
     @FXML
     private TextField loginField;
 
+    @FXML
+    private Hyperlink link1;
+    @FXML
+    private Hyperlink link2;
     private Stage stage;
     private Scene scene;
     private Parent root;
@@ -80,11 +92,12 @@ public class LoginController {
                     root = loader.load();
                     AdminBoardController adminBoardController = loader.getController();
                     loader.setController(adminBoardController);
-                    adminBoardController.setNameLabel(username);
+                    adminBoardController.setNameLabel(users.getInt(1));
                     adminBoardController.setCurrentDate();
                     adminBoardController.populateItemTypeBox();
                     adminBoardController.populateComboBoxes();
                     adminBoardController.populateTables();
+                    adminBoardController.populateBasicInfo();
 //                root = FXMLLoader.load(getClass().getResource("AdminBoard.fxml"));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
@@ -98,7 +111,7 @@ public class LoginController {
                     root = loader.load();
                     BaristaBoardController baristaBoardController = loader.getController();
                     loader.setController(baristaBoardController);
-                    baristaBoardController.setNameLabel(username);
+                    baristaBoardController.setNameLabel(users.getInt(1));
                     baristaBoardController.setCurrentDate();
                     baristaBoardController.populateTables();
                     baristaBoardController.populateComboBoxes();
@@ -119,7 +132,8 @@ public class LoginController {
                     root = loader.load();
                     ClientBoardController clientBoardController = loader.getController();
                     loader.setController(clientBoardController);
-                    clientBoardController.setNameLabel(username);
+                    clientBoardController.populateMenu();
+                    clientBoardController.setNameLabel(users.getInt(1));
                     stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     scene = new Scene(root);
                     stage.setScene(scene);
@@ -131,11 +145,12 @@ public class LoginController {
                 }
                 users.close();
             }
-    public void changeSceneToClient(ActionEvent event) throws IOException {
+    public void changeSceneToClient(ActionEvent event) throws IOException, SQLException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ClientBoard.fxml"));
         root = loader.load();
         ClientBoardController clientBoardController = loader.getController();
         loader.setController(clientBoardController);
+        clientBoardController.populateMenu();
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
@@ -145,17 +160,41 @@ public class LoginController {
     public void switchToCreateAnAccount() {
         createAnAccountPane.setVisible(true);
         mainLoginScreenPane.setVisible(false);
+        creditsPane.setVisible(false);
     }
 
     public void switchToMainLoginScreen() {
         createAnAccountPane.setVisible(false);
         mainLoginScreenPane.setVisible(true);
+        creditsPane.setVisible(false);
+    }
+
+    public void switchToCredits() {
+        createAnAccountPane.setVisible(false);
+        mainLoginScreenPane.setVisible(false);
+        creditsPane.setVisible(true);
+    }
+
+    public void copyLinks(ActionEvent event) {
+        if(event.getSource() == link1) {
+            String copyString = "https://github.com/FoxiLoveIT";
+            StringSelection stringSelectionObj = new StringSelection(copyString);
+            Clipboard clipboardObj = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboardObj.setContents(stringSelectionObj, null);
+        }else if(event.getSource() == link2) {
+            String copyString = "https://www.youtube.com/@marcomanchannel";
+            StringSelection stringSelectionObj = new StringSelection(copyString);
+            Clipboard clipboardObj = Toolkit.getDefaultToolkit().getSystemClipboard();
+            clipboardObj.setContents(stringSelectionObj, null);
+        }
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "The link has been copied to your clipboard!");
+        alert.showAndWait();
     }
 
     public void registerClient(ActionEvent event) throws SQLException {
         if (firstNameField.getText().isEmpty() || loginField.getText().isEmpty() ||
-        passwordField2.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Please provide your first name, login and password. " +
+        passwordField2.getText().isEmpty() || emailField.getText().isEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Please provide your first name, email, username and password. " +
                     "Everything else is optional!");
             alert.showAndWait();
             throw new SQLException("Some of the necessary info was not provided by the user.");
@@ -166,10 +205,17 @@ public class LoginController {
         client.setPhoneNumber(phoneNumberField.getText());
         client.setEmail(emailField.getText());
         client.insertClient();
-        String query = String.format("INSERT INTO access VALUES ((SELECT ClientId from clients WHERE ROWID = last_insert_rowid()), '%s', '%s');",
+        String query = String.format("INSERT INTO access VALUES ((SELECT max(ClientId) from clients), '%s', '%s');",
                 loginField.getText(), passwordField2.getText());
         Database.inputData(query);
-        String greeting = String.format("%s, thank you for registering at our Coffee Shop!", firstNameField.getText());
+        String query1 = "SELECT max(ClientId) from clients;";
+        ResultSet lastclientidrs = Database.getData(query1);
+        int lastclientid = lastclientidrs.getInt(1);
+        String greeting = String.format("%s, thank you for registering at our Coffee Shop!\n" +
+                "Your Client ID is: %d\n" +
+                "Please give it to our barista when you order" +
+                " to get every 10th cup of coffee for free!", firstNameField.getText(), lastclientid);
+        lastclientidrs.close();
         Alert alert = new Alert(Alert.AlertType.INFORMATION, greeting);
         alert.showAndWait();
         switchToMainLoginScreen();

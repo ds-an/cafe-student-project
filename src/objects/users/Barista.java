@@ -47,9 +47,9 @@ public class Barista extends User{
     }
 
     public void insertBarista() throws SQLException {
-        String query = String.format("INSERT INTO baristas VALUES (%d, '%s', '%s', '%s', '%s', '%d', '%s', '%s')",
-                super.getId(), super.getFirstName(), super.getLastName(),
-                this.Shift, super.getPhoneNumber(),
+        String query = String.format("INSERT INTO baristas VALUES (NULL, '%s', '%s', '%s', '%s', '%s')",
+                super.getFirstName(), super.getLastName(),
+                this.getShift(), super.getPhoneNumber(),
                 super.getEmail());
         Database.inputData(query);
     }

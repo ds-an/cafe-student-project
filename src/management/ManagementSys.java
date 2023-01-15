@@ -15,7 +15,7 @@ public class ManagementSys extends Application {
         @Override
         public void start(Stage stage) throws Exception {
                 Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-                stage.setTitle("Welcome!");
+                stage.setTitle("Welcome to the Student Cafe!");
                 stage.setScene(new Scene(root));
                 stage.show();
         }

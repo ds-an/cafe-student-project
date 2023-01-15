@@ -37,7 +37,7 @@
             <Separator layoutX="-2.0" layoutY="39.0" prefHeight="3.0" prefWidth="1200.0" />
             <AnchorPane layoutY="40.0" prefHeight="759.0" prefWidth="585.0">
                <children>
-                  <Button fx:id="logOut" layoutX="14.0" layoutY="697.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="122.0" text="Log Out">
+                  <Button fx:id="logOut" layoutX="14.0" layoutY="697.0" mnemonicParsing="false" onAction="#logOut" prefHeight="48.0" prefWidth="122.0" text="Log Out">
                      <font>
                         <Font size="15.0" />
                      </font>

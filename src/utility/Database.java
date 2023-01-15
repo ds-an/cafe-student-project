@@ -31,6 +31,10 @@ public class Database {
         Connection connection = connect();
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(query);
+//        while (rs.next()) {
+//
+//            System.out.println();
+//        }
         return rs;
     }
 
@@ -42,10 +46,10 @@ public class Database {
         connection.close();
     }
 
-    public static void deleteData(String query) throws SQLException {
-        PreparedStatement stmt = connect().prepareStatement("BEGIN TRANSACTION; " + query + " COMMIT;");
-        stmt.executeUpdate();
-    }
+//    public static void deleteData(String query) throws SQLException {
+//        PreparedStatement stmt = connect().prepareStatement("BEGIN TRANSACTION; " + query + " COMMIT;");
+//        stmt.executeUpdate();
+//    }
 
     public static void main(String[] args) throws SQLException {
         ResultSet resultSet1 = getData("SELECT FirstName\n" +
